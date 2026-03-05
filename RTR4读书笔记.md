@@ -32,7 +32,7 @@
 - ✅ Chapter 12 - Image-Space Effects（图像空间特效）
 - ✅ Chapter 13 - Beyond Polygons（超越多边形）
 - ✅ Chapter 14 - Volumetric and Translucency Rendering（体积与半透明渲染）
-- ✅ Chapter 15 - Non-Photorealistic Rendering（非真实感渲染）
+- ✅ Chapter 15 - Non-Photo realistic Rendering（非真实感渲染）
 - ✅ Chapter 16 - Polygonal Techniques（多边形技术）
 - ✅ Chapter 17 - Curves and Curved Surfaces（曲线和曲面）
 - ✅ Chapter 18 - Pipeline Optimization（管线优化）
@@ -44,7 +44,7 @@
 - ✅ Chapter 24 - The Future（未来）
 - ✅ Chapter 25 - Collision Detection（碰撞检测）
 - ✅ Chapter 26 - Real-Time Ray Tracing（实时光线追踪）
-- 🎉 **全书完成！（26/26章，6635行）**
+- 🎉 **全书完成！**
 
 ### 🔗 相关资源
 
@@ -212,6 +212,61 @@
 - [15.4 线条渲染](#154线条渲染)
 - [15.5 文本渲染](#155文本渲染)
 - [第十五章核心要点总结](#第十五章核心要点总结)
+
+### Chapter 16 - Polygonal Techniques 多边形技术
+- [16.1 三维数据的来源](#161三维数据的来源)
+- [16.2 曲面细分和三角形划分](#162曲面细分和三角形划分)
+- [第十六章核心要点总结](#第十六章核心要点总结)
+
+### Chapter 17 - Curves and Curved Surfaces 曲线和曲面
+- [17.1 参数化曲线](#171参数化曲线)
+- [第十七章核心要点总结](#第十七章核心要点总结)
+
+### Chapter 18 - Pipeline Optimization 管线优化
+- [18.1 分析和调试工具](#181分析和调试工具)
+- [18.2 定位性能瓶颈](#182定位性能瓶颈)
+- [第十八章核心要点总结](#第十八章核心要点总结)
+
+### Chapter 19 - Acceleration Algorithms 加速算法
+- [19.1 空间数据结构](#191空间数据结构)
+- [第十九章核心要点总结](#第十九章核心要点总结)
+
+### Chapter 20 - Efficient Shading 高效着色
+- [20.1 延迟着色](#201延迟着色deferred-shading)
+- [20.2 贴花渲染](#202贴花渲染decal-rendering)
+- [第二十章核心要点总结](#第二十章核心要点总结)
+
+### Chapter 21 - Virtual and Augmented Reality 虚拟现实和增强现实
+- [21.1 VR/AR设备类型](#211-vrar设备类型)
+- [21.2 核心挑战](#212-核心挑战)
+- [21.3 优化技术](#213-优化技术)
+- [第二十一章核心要点总结](#第二十一章核心要点总结)
+
+### Chapter 22 - Intersection Test Methods 相交测试方法
+- [22.1 包围体类型](#221-包围体类型)
+- [22.2 创建方法](#222-创建方法)
+- [第二十二章核心要点总结](#第二十二章核心要点总结)
+
+### Chapter 23 - Graphics Hardware 图形硬件
+- [23.1 硬件光栅化](#231-硬件光栅化)
+- [23.2 保守光栅化](#232-保守光栅化)
+- [第二十三章核心要点总结](#第二十三章核心要点总结)
+
+### Chapter 24 - The Future 未来
+- [24.1 未来趋势](#241-未来趋势)
+- [24.2 当前进展](#242-当前进展)
+- [第二十四章核心要点总结](#第二十四章核心要点总结)
+
+### Chapter 25 - Collision Detection 碰撞检测
+- [25.1 三阶段管线](#251-三阶段管线)
+- [25.2 宽阶段算法](#252-宽阶段算法)
+- [第二十五章核心要点总结](#第二十五章核心要点总结)
+
+### Chapter 26 - Real-Time Ray Tracing 实时光线追踪
+- [26.1 基础概念](#261-基础概念)
+- [26.2 DXR/Vulkan RT](#262-dxrvulkan-rt)
+- [26.3 混合管线](#263-混合管线)
+- [第二十六章核心要点总结](#第二十六章核心要点总结)
 
 ---
 
@@ -5393,5 +5448,1188 @@ CoC max: 10-30px
 > 2. 阅读原始论文（RTR4提供的引用）
 > 3. 参考开源实现（Filament、UE、Unity）
 > 4. 结合实际项目需求调整参数
+
+---
+
+## Chapter 16 - Polygonal Techniques 多边形技术
+
+### 16.1 三维数据的来源
+
+**主要来源**：
+- 三维扫描仪和数字化仪
+- 程序化建模
+- 建模软件（Blender、Maya）
+- 点云数据
+
+**点云处理**：
+- 过滤缺陷数据
+- 重建多边形网格
+- 简化优化
+
+---
+
+### 16.2 曲面细分和三角形划分
+
+**细分技术**：
+- 自适应细分
+- 均匀细分
+- 特征保留细分
+
+**三角形划分方法**：
+- Delaunay三角剖分
+- 约束三角剖分
+- 网格优化
+
+---
+
+
+---
+
+### 第十六章核心要点总结
+
+#### 网格简化算法对比
+
+| 算法 | 复杂度 | 质量 | 特点 | 适用场景 |
+|------|--------|------|------|----------|
+| 顶点聚类 | O(n) | 低 | 速度快，无法保证拓扑 | 快速预处理 |
+| 边折叠 | O(n log n) | 中 | 平衡速度和质量 | 实时LOD生成 |
+| QEM | O(n log n) | 高 | 最小化误差，保持特征 | 离线高质量简化 |
+| 顶点移除 | O(n²) | 中 | 保持拓扑 | 小规模模型 |
+
+**QEM核心公式**：
+```
+误差矩阵 Q = Σ(平面方程的二次型)
+折叠误差 = v^T·Q·v
+目标：最小化累积误差
+```
+
+---
+
+#### 三角剖分技术
+
+| 方法 | 特点 | 应用 |
+|------|------|------|
+| Delaunay | 最大化最小角 | 地形网格 |
+| Constrained Delaunay | 保持边界 | 带约束的网格 |
+| Ear Clipping | 简单实现 | 简单多边形 |
+
+---
+
+#### 点云处理流程
+
+**标准管线**：
+```
+1. 降噪（Statistical Outlier Removal）
+2. 下采样（Voxel Grid）
+3. 法线估计（PCA）
+4. 表面重建（Poisson/Marching Cubes）
+5. 网格简化（QEM）
+```
+
+**参数建议**：
+- Voxel大小：模型尺寸的0.5%-2%
+- 法线搜索半径：平均点距的3-5倍
+- Poisson深度：8-10（高质量）
+
+---
+
+#### 实用建议
+
+**LOD生成**：
+- 使用QEM自动生成LOD链
+- 保持UV连续性
+- LOD切换使用淡入淡出（dithering）
+
+**网格优化**：
+- 顶点缓存优化（Forsyth算法）
+- 三角形条带化
+- 索引压缩（delta encoding）
+
+**常见陷阱**：
+- ❌ 简化后UV出现拉伸
+- ❌ 法线不连续导致着色问题
+- ❌ LOD切换时出现pop现象
+- ❌ 过度简化导致轮廓失真
+
+> [!tip] 优化技巧
+> - 边界和UV接缝赋予更高权重
+> - 使用误差阈值而非固定比例
+> - 为重要特征添加保护约束
+
+---
+
+
+## Chapter 17 - Curves and Curved Surfaces 曲线和曲面
+
+### 17.1 参数化曲线
+
+**Bézier曲线**：
+- 控制点定义
+- de Casteljau算法
+- 曲线连续性（C0、C1、C2）
+
+**样条曲线**：
+- B-样条
+- NURBS（非均匀有理B样条）
+- 曲线拼接
+
+**应用**：
+- 路径动画
+- 相机轨迹
+- 程序化建模
+
+---
+
+
+---
+
+### 第十七章核心要点总结
+
+#### 曲线类型对比
+
+| 曲线类型 | 控制方式 | 局部性 | 特点 | 应用 |
+|----------|----------|--------|------|------|
+| Bézier | 控制点 | 全局 | 直观，端点插值 | 动画路径 |
+| B-样条 | 控制点 | 局部 | 平滑，局部控制 | CAD建模 |
+| NURBS | 控制点+权重 | 局部 | 精确表示圆锥曲线 | 工业设计 |
+| Catmull-Rom | 插值点 | 局部 | 通过所有点 | 相机路径 |
+
+**连续性等级**：
+- C⁰：位置连续
+- C¹：切线连续
+- C²：曲率连续
+- G¹：几何切线连续（方向一致，长度可不同）
+
+---
+
+#### de Casteljau算法
+
+**核心思想**：递归线性插值
+```glsl
+// 3次Bézier曲线求值
+vec3 deCasteljau(vec3 P[4], float t) {
+    vec3 Q[3], R[2], S;
+    for(int i=0; i<3; i++) Q[i] = mix(P[i], P[i+1], t);
+    for(int i=0; i<2; i++) R[i] = mix(Q[i], Q[i+1], t);
+    S = mix(R[0], R[1], t);
+    return S;
+}
+```
+
+**时间复杂度**：O(n²)，n为曲线次数
+
+---
+
+#### GPU曲面细分管线
+
+**三阶段**：
+```
+1. Hull Shader (HS)
+   - 计算细分因子
+   - 输出补丁常量数据
+
+2. Tessellator (固定功能)
+   - 生成细分坐标
+   - 三角形/四边形模式
+
+3. Domain Shader (DS)
+   - 计算顶点位置
+   - 应用位移贴图
+```
+
+**细分因子设置**：
+```cpp
+// 基于距离的自适应细分
+float tessLevel = saturate(1.0 - distance/maxDist) * maxTess;
+
+// 基于屏幕空间大小
+float screenSize = edgeLength * projection / distance;
+float tessLevel = screenSize / targetPixels;
+```
+
+---
+
+#### 实用参数
+
+**细分设置**：
+```
+最大细分级别：64（硬件限制）
+推荐范围：1-16
+近距离：8-16
+远距离：1-4
+```
+
+**PN三角形**：
+- 3个控制点 + 法线 → 10个控制点的三次Bézier三角形
+- 平滑低模网格
+- 性能开销约20-30%
+
+---
+
+#### 实用建议
+
+**何时使用曲面细分**：
+- 地形渲染（高度图位移）
+- 动态LOD（基于距离）
+- 平滑曲面（PN三角形）
+- 水面模拟（FFT + 细分）
+
+**优化技巧**：
+- 视锥剔除在细分前
+- 背面剔除在Hull Shader
+- 使用整数细分因子（避免裂缝）
+- 缓存补丁数据
+
+**常见陷阱**：
+- ❌ 细分因子不匹配导致裂缝
+- ❌ 过度细分导致性能下降
+- ❌ 法线未正确插值
+- ❌ UV坐标在Domain Shader丢失
+
+> [!success] 现代应用
+> - 《巫师3》：地形细分
+> - 《战神》：角色细节增强
+> - 《极限竞速》：车辆曲面
+
+---
+
+
+## Chapter 18 - Pipeline Optimization 管线优化
+
+### 18.1 分析和调试工具
+
+**性能分析工具**：
+- GPU分析器（NSight、RenderDoc）
+- CPU分析器
+- 帧时间分析
+
+---
+
+### 18.2 定位性能瓶颈
+
+#### 18.2.1 应用阶段测试
+- CPU使用率监控
+- Draw call计数
+- 批处理效率
+
+#### 18.2.2 几何处理阶段测试
+- 顶点数统计
+- 曲面细分负载
+- 几何着色器性能
+
+#### 18.2.3 光栅化阶段测试
+- 三角形吞吐量
+- 裁剪效率
+- 视锥剔除
+
+#### 18.2.4 像素处理阶段测试
+- 像素填充率
+- 纹理带宽
+- 着色器复杂度
+
+**优化策略**：
+- LOD系统
+- 遮挡剔除
+- 实例化渲染
+- 批处理优化
+
+---
+
+
+---
+
+### 第十八章核心要点总结
+
+#### 性能瓶颈定位
+
+| 瓶颈位置 | 特征 | 测试方法 | 解决方案 |
+|----------|------|----------|----------|
+| CPU | 帧率低，GPU空闲 | 降低分辨率无效 | 减少Draw Call |
+| 顶点处理 | 顶点着色器复杂 | 降低模型复杂度有效 | 简化网格/着色器 |
+| 光栅化 | 大三角形 | 改变三角形大小 | 细分过大三角形 |
+| 像素填充 | 高分辨率/复杂PS | 降低分辨率有效 | 优化片元着色器 |
+| 内存带宽 | 纹理读取多 | 改纹理格式 | 压缩纹理 |
+
+**定位方法**：
+```
+1. 降低分辨率 → 改善？ → 像素瓶颈
+2. 降低模型复杂度 → 改善？ → 顶点瓶颈
+3. 禁用部分功能 → 改善？ → 找到问题Pass
+```
+
+---
+
+#### Draw Call优化技术
+
+| 技术 | 减少量 | 限制 | 适用场景 |
+|------|--------|------|----------|
+| 静态批处理 | 90%+ | 静态物体 | 场景道具 |
+| 动态批处理 | 50-80% | 顶点数<900 | 粒子/小物体 |
+| GPU Instancing | 95%+ | 相同网格 | 植被/敌人 |
+| Indirect Drawing | 99%+ | 需GPU剔除 | 大规模场景 |
+
+**目标Draw Call数**：
+```
+移动端：<100
+主机：<1000
+PC高端：<5000
+```
+
+---
+
+#### 剔除技术对比
+
+| 技术 | 成本 | 效果 | 适用 |
+|------|------|------|------|
+| 视锥剔除 | 极低 | 基础 | 所有场景 |
+| 背面剔除 | 零 | 50% | 封闭物体 |
+| 遮挡剔除 | 中 | 高 | 城市/室内 |
+| 距离剔除 | 极低 | 中 | 开放世界 |
+| 小物体剔除 | 低 | 中 | 复杂场景 |
+
+**遮挡剔除方法**：
+- 硬件查询（Occlusion Query）
+- 软件光栅化（Hi-Z）
+- 预计算PVS（Potentially Visible Set）
+
+---
+
+#### LOD系统设计
+
+**切换策略**：
+```cpp
+// 平滑过渡
+float lodBlend = frac(lodLevel);
+color = mix(SampleLOD(n), SampleLOD(n+1), lodBlend);
+
+// Dithered LOD（《刺客信条》）
+if(ditherPattern[pixelPos] < lodBlend)
+    discard;
+```
+
+**LOD选择因子**：
+- 距离（最常用）
+- 屏幕空间大小
+- 相机速度（高速移动降LOD）
+- 重要性（主角vs背景）
+
+---
+
+#### 性能分析工具
+
+**GPU调试器**：
+| 工具 | 平台 | 特点 |
+|------|------|------|
+| NSight | NVIDIA | 强大的GPU调试 |
+| RenderDoc | 跨平台 | 开源，易用 |
+| PIX | Xbox/PC | 微软官方 |
+| Xcode | iOS/Mac | Metal优化 |
+
+**性能指标**：
+```
+FPS：60+ (16.67ms)
+Draw Call：<1000
+三角形数：<1M/帧
+纹理内存：<2GB
+```
+
+---
+
+#### 实用优化检查清单
+
+**CPU端**：
+```
+✓ 减少Draw Call到<1000
+✓ 异步资源加载
+✓ 多线程渲染提交
+✓ 物理/动画并行
+✓ 视锥/遮挡剔除
+```
+
+**GPU端**：
+```
+✓ 使用GPU Instancing
+✓ 合并材质/纹理
+✓ LOD系统
+✓ 简化着色器
+✓ 提前深度测试（Z-PrePass）
+```
+
+**内存**：
+```
+✓ 纹理压缩（BC/ASTC）
+✓ Mipmaps
+✓ 纹理流式加载
+✓ 几何压缩
+```
+
+---
+
+#### 常见陷阱
+
+- ❌ 过早优化（先profile再优化）
+- ❌ 忽视CPU-GPU同步开销
+- ❌ 过度使用透明物体
+- ❌ 每帧重建buffer
+- ❌ 着色器中使用分支和循环
+
+> [!important] 优化黄金法则
+> 1. **测量**：使用profiler找瓶颈
+> 2. **优化**：针对瓶颈优化
+> 3. **验证**：确认改善效果
+> 4. **重复**：迭代优化
+
+---
+
+
+## Chapter 19 - Acceleration Algorithms 加速算法
+
+### 19.1 空间数据结构
+
+#### 19.1.1 层次包围体（BVH）
+
+**包围体类型**：
+- AABB（轴对齐包围盒）
+- OBB（方向包围盒）
+- 包围球
+- k-DOP（离散定向多面体）
+
+**BVH构建**：
+- 自顶向下构建
+- 表面积启发式（SAH）
+- 动态BVH更新
+
+**应用**：
+- 光线追踪加速
+- 视锥剔除
+- 碰撞检测
+
+---
+
+#### 19.1.2 BSP树
+
+**二叉空间分割**：
+- 平面分割
+- 多边形分类
+- 空间查询
+
+**应用**：
+- 可见性判断
+- 碰撞检测
+- 空间查询
+
+**其他空间结构**：
+- 八叉树（Octree）
+- kd-树
+- 网格（Grid）
+
+---
+
+
+---
+
+### 第十九章核心要点总结
+
+#### 空间数据结构对比
+
+| 结构 | 构建 | 查询 | 更新 | 内存 | 适用 |
+|------|------|------|------|------|------|
+| BVH | O(n log n) | O(log n) | 中 | 中 | 光线追踪 |
+| kd-tree | O(n log n) | O(log n) | 难 | 低 | 静态场景 |
+| 八叉树 | O(n log n) | O(log n) | 易 | 高 | 体素/稀疏场景 |
+| BSP树 | O(n log n) | O(log n) | 难 | 中 | 可见性 |
+| 网格 | O(n) | O(1) | 易 | 高 | 均匀分布 |
+
+**选择建议**：
+- 动态场景 → BVH
+- 静态场景 → kd-tree
+- 点查询 → 网格/八叉树
+- 光线追踪 → BVH
+
+---
+
+#### BVH构建策略
+
+**自顶向下构建**：
+```cpp
+BuildBVH(objects):
+    if objects.size() <= maxLeafSize:
+        return LeafNode(objects)
+
+    // SAH选择最佳分割
+    (axis, pos) = FindBestSplit(objects)
+    (left, right) = Partition(objects, axis, pos)
+
+    node.left = BuildBVH(left)
+    node.right = BuildBVH(right)
+    node.bounds = Union(node.left.bounds, node.right.bounds)
+    return node
+```
+
+**SAH成本函数**：
+```
+Cost = C_trav + P_left·N_left·C_isect + P_right·N_right·C_isect
+
+其中：
+C_trav = 遍历成本（通常=1）
+C_isect = 相交测试成本（通常=1.2）
+P = 表面积比率 = SA_child / SA_parent
+N = 子节点图元数量
+```
+
+---
+
+#### 包围体类型对比
+
+| 类型 | 紧密度 | 相交测试 | 内存 | 应用 |
+|------|--------|----------|------|------|
+| AABB | 低 | 快（3-9次比较） | 6浮点 | BVH节点 |
+| OBB | 中 | 中（15次点积） | 15浮点 | 角色包围盒 |
+| 球体 | 低 | 极快（1次比较） | 4浮点 | 粗略碰撞 |
+| k-DOP | 高 | 慢 | 2k浮点 | 精确碰撞 |
+
+**AABB相交测试**：
+```glsl
+bool intersectAABB(Ray ray, vec3 boxMin, vec3 boxMax) {
+    vec3 invDir = 1.0 / ray.dir;
+    vec3 tMin = (boxMin - ray.origin) * invDir;
+    vec3 tMax = (boxMax - ray.origin) * invDir;
+    vec3 t1 = min(tMin, tMax);
+    vec3 t2 = max(tMin, tMax);
+    float tNear = max(max(t1.x, t1.y), t1.z);
+    float tFar = min(min(t2.x, t2.y), t2.z);
+    return tNear <= tFar && tFar >= 0.0;
+}
+```
+
+---
+
+#### 动态BVH更新
+
+**策略对比**：
+| 方法 | 成本 | 质量 | 适用 |
+|------|------|------|------|
+| 完全重构 | 高 | 最优 | 少量动态物体 |
+| 增量更新 | 低 | 次优 | 小幅度运动 |
+| 混合策略 | 中 | 良好 | 通用场景 |
+
+**增量更新算法**：
+```cpp
+UpdateBVH(node, movedObject):
+    // 1. 从叶子向上标记失效节点
+    MarkInvalid(node)
+
+    // 2. 移除物体
+    Remove(movedObject)
+
+    // 3. 重新插入（从根开始）
+    Insert(root, movedObject)
+
+    // 4. 重新计算包围盒（自底向上）
+    RefitBounds(node)
+```
+
+---
+
+#### 实用参数建议
+
+**BVH构建参数**：
+```
+最大叶子节点图元数：1-4
+  - 1：光线追踪最优
+  - 4：碰撞检测平衡
+
+SAH bins数量：16-32
+  - 更多bins = 更好质量，更慢构建
+
+遍历成本/相交成本比：1.0/1.2
+```
+
+**空间划分参数**：
+```
+八叉树最大深度：8-12
+kd-tree分割阈值：自适应（基于表面积）
+网格单元大小：最大物体尺寸的2-4倍
+```
+
+---
+
+#### 优化技巧
+
+**BVH质量优化**：
+- 使用SAH而非中点分割
+- 考虑空间划分+对象划分混合
+- 紧密拟合包围盒（不要过大）
+
+**遍历优化**：
+- 使用SIMD指令（4/8路并行）
+- 排序子节点（近的先访问）
+- 光线束/光线包优化
+
+**内存优化**：
+- 紧凑节点布局（32字节对齐）
+- 叶子节点与内部节点分离存储
+- 使用量化坐标（16位浮点）
+
+---
+
+#### 常见陷阱
+
+- ❌ 包围盒过大（浪费遍历）
+- ❌ 叶子节点过多图元（慢）
+- ❌ 动态场景使用静态结构
+- ❌ 忽视内存布局（缓存不友好）
+- ❌ 不平衡的树（退化为线性）
+
+> [!success] 现代引擎案例
+> - **Unreal Engine**：BVH + 光线追踪加速
+> - **Unity**：混合BVH/网格碰撞
+> - **Embree**：Intel的高性能BVH库
+
+---
+
+
+## Chapter 20 - Efficient Shading 高效着色
+
+### 20.1 延迟着色（Deferred Shading）
+
+**原理**：
+1. 几何Pass：渲染G-Buffer（位置、法线、材质）
+2. 光照Pass：使用G-Buffer计算光照
+3. 优势：光源数量不影响几何复杂度
+
+**G-Buffer内容**：
+- RT0：Albedo + Roughness
+- RT1：Normal (xyz)
+- RT2：Depth + Metallic
+- RT3：Emission
+
+**优点**：
+- 高效处理多光源
+- 避免重复着色
+- 易于实现屏幕空间效果
+
+**缺点**：
+- 内存带宽高
+- 不支持硬件MSAA
+- 透明物体处理困难
+
+---
+
+### 20.2 贴花渲染（Decal Rendering）
+
+**技术方法**：
+- 投影贴花
+- 网格贴花
+- 屏幕空间贴花
+
+**实现要点**：
+- 深度测试
+- 法线混合
+- 边缘淡出
+
+**应用**：
+- 弹孔
+- 污渍
+- 标识
+
+---
+
+
+---
+
+### 第二十章核心要点总结
+
+#### 着色架构对比
+
+| 架构 | 几何Pass | 光照Pass | 透明 | 带宽 | 多光源 |
+|------|----------|----------|------|------|--------|
+| Forward | 1×(Geom+Light) | - | 易 | 低 | 慢 |
+| Deferred | 1×Geom | 1×Light | 难 | 高 | 快 |
+| Tile-Based | 1×Geom | 1×Light/Tile | 难 | 中 | 极快 |
+| Clustered | 1×Geom | 1×Light/Cluster | 中 | 中 | 极快 |
+| Forward+ | 1×Z + 1×Full | - | 易 | 中 | 快 |
+
+**选择建议**：
+```
+简单场景(<10光源) → Forward
+复杂光照(100+光源) → Deferred/Clustered
+需要透明 → Forward+ / Clustered
+移动端 → Tile-Based Deferred
+```
+
+---
+
+#### G-Buffer布局设计
+
+**标准布局**：
+```
+RT0: RGBA16F  → Normal.xy (压缩), Roughness, Metallic
+RT1: RGBA8    → Albedo.rgb, AO
+RT2: RG16F    → Motion Vector
+深度：D32F      → Depth
+
+总带宽：16 bytes/pixel
+```
+
+**法线压缩方法**：
+```glsl
+// Octahedron编码（最流行）
+vec2 encodeNormal(vec3 n) {
+    n /= (abs(n.x) + abs(n.y) + abs(n.z));
+    return n.z >= 0.0 ? n.xy :
+        (1.0 - abs(n.yx)) * sign(n.xy);
+}
+
+vec3 decodeNormal(vec2 enc) {
+    vec3 n = vec3(enc, 1.0 - abs(enc.x) - abs(enc.y));
+    float t = max(-n.z, 0.0);
+    n.xy += n.xy >= 0.0 ? -t : t;
+    return normalize(n);
+}
+```
+
+---
+
+#### Tile-Based Deferred详解
+
+**算法流程**：
+```
+1. G-Buffer Pass（常规延迟）
+2. 计算Depth Bounds per Tile
+3. 光源剔除（Per Tile）
+   for each tile:
+       lightList = []
+       for each light:
+           if intersect(light, tile, depthMin, depthMax):
+               lightList.append(light)
+4. 光照计算（读取lightList）
+```
+
+**Tile大小选择**：
+```
+16×16：标准（最平衡）
+8×8：更精细剔除，更多开销
+32×32：更少开销，剔除粗糙
+```
+
+**性能提升**：
+- 1000光源场景：10-20倍加速
+- 光源分布不均时效果最好
+
+---
+
+#### Clustered Shading
+
+**3D分簇**：
+```cpp
+// 指数深度分割
+float sliceScale = numSlices / log2(farPlane / nearPlane);
+float sliceBias = -numSlices * log2(nearPlane) * sliceScale;
+int slice = max(0, int(floor(log2(linearDepth) * sliceScale + sliceBias)));
+
+// 簇索引
+int clusterX = screenX / tileSize;
+int clusterY = screenY / tileSize;
+int clusterZ = slice;
+int clusterIndex = clusterX + clusterY*numClustersX + clusterZ*numClustersX*numClustersY;
+```
+
+**参数设置**：
+```
+Tile尺寸：16×16 pixels
+深度切片：16-32 slices
+簇总数：~几千个
+
+示例（1920×1080）：
+X: 120 tiles (1920/16)
+Y: 68 tiles (1080/16)
+Z: 24 slices
+总计：195,840个簇
+```
+
+**优势**：
+- 支持透明物体（有深度信息）
+- 3D剔除更精确
+- 适合VR（两个视角共享簇数据）
+
+---
+
+#### Forward+（Forward Plus）
+
+**流程**：
+```
+1. Z-PrePass（仅深度）
+2. 光源剔除（类似Tile-Based，但用深度）
+3. Forward着色（读取每像素光源列表）
+```
+
+**vs传统Forward**：
+- 传统：每物体测试所有光源（O(Objects × Lights)）
+- Forward+：预计算光源列表（O(Lights)一次）
+
+**vs Deferred**：
+- 优势：支持MSAA、透明、多材质
+- 劣势：仍需多次采样纹理
+
+---
+
+#### Decal渲染
+
+**延迟Decal（G-Buffer修改）**：
+```glsl
+// 1. 渲染Decal包围盒
+// 2. 重建世界坐标
+vec3 worldPos = ReconstructWorldPos(screenUV, depth);
+
+// 3. 转换到Decal空间
+vec3 decalPos = mul(worldToDecal, vec4(worldPos, 1.0)).xyz;
+
+// 4. 范围检查
+if(any(abs(decalPos) > 0.5)) discard;
+
+// 5. 采样并混合
+vec3 decalAlbedo = tex2D(decalTex, decalPos.xy + 0.5).rgb;
+gbuffer.albedo = lerp(gbuffer.albedo, decalAlbedo, decalAlpha);
+```
+
+**优化**：
+- 使用OBB包围盒（最小化overdraw）
+- Depth Range优化（提前剔除）
+- 批处理相同材质的Decal
+
+---
+
+#### 实用参数建议
+
+**延迟着色配置**：
+```
+G-Buffer格式：
+  - 桌面：RGBA16F (高质量)
+  - 移动：RGBA8 + 法线压缩（节省带宽）
+
+光照Tile大小：16×16
+最大光源数/Tile：256
+Clustered深度切片：24-32
+```
+
+**光源分配**：
+```
+Forward：<10光源/物体
+Deferred：<256光源/场景区域
+Clustered：1000+光源（高效）
+```
+
+---
+
+#### 优化技巧
+
+**G-Buffer优化**：
+- 使用更小的数据格式（8位/16位）
+- 法线和粗糙度打包到同一纹理
+- 仅在需要的地方存储数据（Stencil Mask）
+
+**光照优化**：
+- 光源按影响范围排序
+- 使用Stencil标记受光照影响区域
+- 延迟光照（Light Pre-Pass）节省带宽
+
+**透明处理**：
+- 前向渲染透明物体
+- 使用Clustered提供光源列表
+- 单独的透明Pass
+
+---
+
+#### 常见陷阱
+
+- ❌ G-Buffer过大（>64字节/像素）
+- ❌ 未压缩法线（浪费16位）
+- ❌ Tile过小（计算开销）/ 过大（剔除粗糙）
+- ❌ 延迟着色不支持MSAA（需要处理）
+- ❌ 忘记透明物体的特殊处理
+
+> [!important] 内存带宽计算
+> ```
+> 1920×1080 @ 60fps
+> G-Buffer (16字节/像素)
+> = 1920×1080×16×60 = 1.99 GB/s
+>
+> 加上深度、光照、后处理：
+> 总带宽 ≈ 5-10 GB/s
+> ```
+
+> [!success] 现代游戏引擎
+> - **虚幻5**：Clustered Deferred
+> - **Unity HDRP**：Tile-Based + Clustered
+> - **寒霜引擎**：Tile-Based Deferred
+> - **Doom 2016**：Forward+ (id Tech 6)
+
+---
+
+## 核心技术对比
+
+| 技术类别 | 方法 | 优势 | 劣势 | 适用场景 |
+|---------|------|------|------|----------|
+| **空间结构** | BVH | 动态更新 | 构建成本高 | 光线追踪 |
+| | BSP树 | 查询快 | 静态 | 可见性 |
+| | 八叉树 | 简单 | 空间浪费 | 体素场景 |
+| **着色** | 延迟着色 | 多光源高效 | 内存带宽高 | 复杂场景 |
+| | 前向着色 | 透明友好 | 多光源慢 | 简单场景 |
+| **曲线** | Bézier | 直观 | 全局控制 | 动画路径 |
+| | B-样条 | 局部控制 | 复杂 | CAD建模 |
+
+---
+
+## 优化技巧速查
+
+### 管线优化
+```
+1. 减少Draw Call
+   - 批处理（Batching）
+   - 实例化（Instancing）
+   - 合并网格
+
+2. 降低几何复杂度
+   - LOD系统
+   - 视锥剔除
+   - 遮挡剔除
+
+3. 优化像素填充
+   - 提前深度测试
+   - 降低Overdraw
+   - 着色器优化
+```
+
+### 空间加速
+```
+1. BVH优化
+   - SAH构建
+   - 紧密包围
+   - 动态重构
+
+2. 剔除优化
+   - 层次视锥剔除
+   - 遮挡查询
+   - 软件光栅化
+```
+
+### 延迟着色优化
+```
+1. G-Buffer压缩
+   - 法线编码（Octahedron）
+   - 打包多个属性
+   - 使用更小的格式
+
+2. 光照优化
+   - Tile-based Deferred
+   - Clustered Deferred
+   - 光源剔除
+```
+
+---
+
+
+## Chapter 21 - Virtual and Augmented Reality 虚拟现实和增强现实
+
+### 21.1 VR/AR设备类型
+- HTC Vive、Oculus Rift（VR头显）
+- HoloLens、ARKit/ARCore（AR平台）
+- 追踪方式：Outside-In vs Inside-Out
+
+### 21.2 核心挑战
+- **延迟**：运动到光子<20ms（理想<11ms）
+- **刷新率**：90Hz+（防止晕动症）
+- **分辨率**：单眼1440×1600+
+- **镜头畸变校正**
+
+### 21.3 优化技术
+- 单通道立体渲染
+- 固定注视点渲染
+- 隐藏区域网格（节省15%性能）
+- 异步时间扭曲
+
+---
+
+### 第二十一章核心要点总结
+
+#### VR性能目标
+```
+帧率：90fps（11.1ms/帧）
+GPU时间：8-9ms
+Draw Call：<100
+延迟：<20ms
+```
+
+#### 优化优先级
+1. 单通道立体渲染（30-40%提升）
+2. 隐藏区域网格（15%提升）
+3. 固定注视点渲染（50%+提升，需眼动追踪）
+4. 异步时间扭曲（降低延迟感知）
+
+---
+
+## Chapter 22 - Intersection Test Methods 相交测试方法
+
+### 22.1 包围体类型
+- **AABB**：最快，不紧密
+- **OBB**：紧密，稍慢
+- **球体**：极快，通常不紧密
+- **k-DOP**：平衡
+- **胶囊体**：适合角色
+
+### 22.2 创建方法
+- AABB：遍历顶点找极值
+- 球体：Ritter算法（快速）、Welzl算法（精确）
+- OBB：PCA主成分分析
+- 凸包：Quickhull算法
+
+---
+
+### 第二十二章核心要点总结
+
+#### 包围体选择指南
+- 静态物体 → AABB
+- 旋转刚体 → OBB
+- 角色碰撞 → Capsule
+- 精确需求 → 凸包
+
+#### 相交测试性能
+- 射线-AABB：3-9次比较
+- 射线-球体：1次判别式
+- 射线-OBB：15次点积
+
+---
+
+## Chapter 23 - Graphics Hardware 图形硬件
+
+### 23.1 硬件光栅化
+- Tile-Based遍历（4×4或8×8像素）
+- 边缘函数测试
+- 重心坐标插值
+- 保护带（±16K像素）
+
+### 23.2 保守光栅化
+- 外保守：包含所有接触像素
+- 内保守：只包含完全内部像素
+
+---
+
+### 第二十三章核心要点总结
+
+#### 透视正确插值
+```glsl
+// 错误
+uv = u*uv0 + v*uv1 + w*uv2; // ❌
+
+// 正确
+z_inv = u/z0 + v/z1 + w/z2;
+uv = (u*uv0/z0 + v*uv1/z1 + w*uv2/z2) / z_inv; // ✅
+```
+
+---
+
+## Chapter 24 - The Future 未来
+
+### 24.1 未来趋势
+- 实时路径追踪
+- AI降噪（神经网络）
+- 混合渲染管线
+- 神经辐射场（NeRF）
+
+### 24.2 当前进展
+- 每像素7条光线（混合管线）
+- AI超分辨率（DLSS）
+- 符号距离场渲染
+
+---
+
+### 第二十四章核心要点总结
+
+#### 渲染演进
+```
+当前（2020-2023）：
+- 光栅化为主
+- 光追精选效果
+- AI降噪
+
+未来（2025+）：
+- 完全路径追踪
+- 1-4 spp → 256 spp质量
+- 4K@60fps
+```
+
+---
+
+## Chapter 25 - Collision Detection 碰撞检测
+
+### 25.1 三阶段管线
+1. **宽阶段**：快速剔除（SAP、网格、BVH）
+2. **中阶段**：定位碰撞图元
+3. **窄阶段**：详细接触信息（GJK、SAT）
+
+### 25.2 宽阶段算法
+- **扫描剪枝（SAP）**：O(n+k)，适合稀疏场景
+- **空间网格**：O(n)，适合均匀分布
+- **BVH**：O(n log n)，通用场景
+
+---
+
+### 第二十五章核心要点总结
+
+#### 算法选择
+- 稀疏3D → SAP
+- 密集2D → 空间网格
+- 通用 → BVH
+- 开放世界 → 分层网格
+
+#### 网格配置
+```
+单元格大小：2-4倍最大物体尺寸
+示例（赛车）：
+  最大车辆：5m
+  单元格：10m
+```
+
+---
+
+## Chapter 26 - Real-Time Ray Tracing 实时光线追踪
+
+### 26.1 基础概念
+- 光线方程：r(t) = o + t·d
+- 路径追踪：递归采样
+- 样本数：1 spp（噪声）→ 256+ spp（高质量）
+
+### 26.2 DXR/Vulkan RT
+- **着色器类型**：Ray Generation、Closest Hit、Any Hit、Miss、Intersection
+- **加速结构**：TLAS（顶层）+ BLAS（底层）
+
+### 26.3 混合管线
+- 光栅化：主几何
+- 光追：反射、阴影、AO、GI
+- 降噪：时域+空域+AI
+
+---
+
+### 第二十六章核心要点总结
+
+#### TLAS/BLAS策略
+- **BLAS**：静态几何预构建，动态几何增量更新
+- **TLAS**：每帧更新实例变换，支持大量实例化
+
+#### 光线预算
+```
+相机光线：1 ray/pixel
+阴影：1 ray/pixel
+反射：1-2 rays/pixel
+AO：2 rays/pixel（半分辨率）
+GI：2 rays/pixel（半分辨率）
+
+总计：~7 rays/pixel @ 1080p
+```
+
+#### 降噪必需
+- 无降噪：需要256+ spp
+- 有降噪：1-4 spp可达到可用质量
 
 ---
