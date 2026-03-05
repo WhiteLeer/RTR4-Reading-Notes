@@ -27,7 +27,13 @@
 - ✅ Chapter 7 - Shadows（阴影）
 - ✅ Chapter 8 - Light and Color（光与颜色）
 - ✅ Chapter 9 - Physically Based Shading（基于物理的着色）
-- ⏳ Chapter 10+ - 持续更新中...
+- ✅ Chapter 10 - Local Illumination（局部光照）
+- ✅ Chapter 11 - Global Illumination（全局光照）
+- ✅ Chapter 12 - Image-Space Effects（图像空间特效）
+- ✅ Chapter 13 - Beyond Polygons（超越多边形）
+- ✅ Chapter 14 - Volumetric and Translucency Rendering（体积与半透明渲染）
+- ✅ Chapter 15 - Non-Photorealistic Rendering（非真实感渲染）
+- ⏳ Chapter 16+ - 持续更新中...
 
 ### 🔗 相关资源
 
@@ -125,6 +131,76 @@
 - [9.11 分层材质](#911分层材质)
 - [9.12 混合和过滤材质](#912混合和过滤材质)
 - [第九章核心要点总结](#第九章核心要点总结)
+
+### Chapter 10 - Local Illumination 局部光照
+- [10.1 面光源](#101面光源)
+  - [10.1.1 光泽材质](#1011光泽材质)
+  - [10.1.2 一般光源形状](#1012一般光源形状)
+- [10.2 环境光照](#102环境光照)
+- [10.3 球面函数和半球函数](#103球面函数和半球函数)
+  - [10.3.1 简单表格形式](#1031简单表格形式)
+  - [10.3.2 球面基底](#1032球面基底)
+  - [10.3.3 半球基底](#1033半球基底)
+- [10.4 环境映射](#104环境映射)
+  - [10.4.1 经纬度映射](#1041经纬度映射latitude-longitude-mapping)
+  - [10.4.2 球面映射](#1042球面映射sphere-mapping)
+  - [10.4.3 立方体映射](#1043立方体映射cube-mapping)
+  - [10.4.4 其他投影方法](#1044其他投影方法)
+- [10.5 基于图像的高光照明](#105基于图像的高光照明)
+  - [10.5.1 预过滤环境映射](#1051预过滤环境映射)
+  - [10.5.2 微表面BRDF的分裂积分近似](#1052微表面brdf的分裂积分近似)
+  - [10.5.3 不对称和各向异性波瓣](#1053不对称和各向异性波瓣)
+- [10.6 Irradiance环境映射](#106irradiance环境映射)
+  - [10.6.1 球谐Irradiance](#1061球谐irradiance)
+  - [10.6.2 其他表示方法](#1062其他表示方法)
+- [10.7 误差来源](#107误差来源)
+- [第十章核心要点总结](#第十章核心要点总结)
+
+### Chapter 11 - Global Illumination 全局光照
+- [11.1 渲染方程](#111渲染方程)
+- [11.2 通用全局光照](#112通用全局光照)
+- [11.3 环境光遮蔽](#113环境光遮蔽ambient-occlusion)
+- [11.4 定向遮蔽](#114定向遮蔽directional-occlusion)
+- [第十一章核心要点总结](#第十一章核心要点总结)
+
+### Chapter 12 - Image-Space Effects 图像空间特效
+- [12.1 图像处理](#121图像处理)
+- [12.2 重投影技术](#122重投影技术reprojection)
+- [12.3 镜头光晕和泛光](#123镜头光晕和泛光lens-flare--bloom)
+- [12.4 景深](#124景深depth-of-field)
+- [12.5 运动模糊](#125运动模糊motion-blur)
+- [第十二章核心要点总结](#第十二章核心要点总结)
+
+### Chapter 13 - Beyond Polygons 超越多边形
+- [13.1 渲染频谱](#131渲染频谱)
+- [13.2-13.3 天空盒](#132-133天空盒skybox)
+- [13.4 光场渲染](#134光场渲染light-field-rendering)
+- [13.5 Sprite和图层](#135sprite和图层)
+- [13.6 广告牌技术](#136广告牌技术billboard)
+- [13.7 位移技术](#137位移技术displacement)
+- [13.8 粒子系统](#138粒子系统)
+- [13.9 点渲染](#139点渲染point-based-rendering)
+- [13.10 体素](#1310体素voxel)
+- [第十三章核心要点总结](#第十三章核心要点总结)
+
+### Chapter 14 - Volumetric and Translucency Rendering 体积与半透明渲染
+- [14.1 光线散射理论](#141光线散射理论)
+- [14.2 特殊的体渲染](#142特殊的体渲染)
+- [14.3 通用体渲染](#143通用体渲染)
+- [14.4 天空渲染](#144天空渲染)
+- [14.5 半透明表面](#145半透明表面)
+- [14.6 次表面散射](#146次表面散射sss)
+- [14.7 毛发和皮毛](#147毛发和皮毛)
+- [14.8 统一方法](#148统一方法)
+- [第十四章核心要点总结](#第十四章核心要点总结)
+
+### Chapter 15 - Non-Photorealistic Rendering 非真实感渲染
+- [15.1 卡通着色](#151卡通着色toon-shading)
+- [15.2 轮廓渲染](#152轮廓渲染)
+- [15.3 笔触表面风格化](#153笔触表面风格化)
+- [15.4 线条渲染](#154线条渲染)
+- [15.5 文本渲染](#155文本渲染)
+- [第十五章核心要点总结](#第十五章核心要点总结)
 
 ---
 
@@ -2478,3 +2554,2833 @@ $$L_o = \underbrace{\frac{F \cdot G \cdot D}{4(\mathbf{n} \cdot \mathbf{l})(\mat
 
 ---
 
+
+## Chapter 10 - Local Illumination 局部光照
+
+### 10.1 面光源
+
+#### 面光源与点光源的区别
+
+**点光源近似**：
+- 无穷小光源，占据立体角为0
+- radiance无穷大（理论上）
+- 实际不存在，但计算简单
+
+**面光源**：
+- 有物理尺寸，占据非零立体角
+- 产生软阴影
+- 更真实，但需要积分计算
+
+**误差来源**：
+1. 光源尺寸（覆盖的立体角）
+2. 表面粗糙度（BRDF波瓣宽度）
+
+> [!tip] 何时可用点光源近似
+> - 光源相对于场景很小
+> - 表面很粗糙（BRDF波瓣宽）
+> - 误差 ∝ 光源立体角 / BRDF波瓣立体角
+
+---
+
+#### 向量Irradiance
+
+**核心思想**：
+将任意形状面光源精确转换为等效的方向光
+
+**定义**（Gershun, 1939）：
+
+$$\mathbf{e}(p) = \int_{\Omega} L_i(p, \mathbf{l}) \mathbf{l} \, d\omega_i$$
+
+- 对每个方向的radiance，构造与该方向平行的向量
+- 向量长度 = radiance × 立体角
+- 对所有向量求和
+
+**应用于Lambertian表面**：
+
+$$E(p, \mathbf{n}) = \mathbf{n} \cdot \mathbf{e}(p)$$
+
+**限制条件**：
+- 面光源整体位于表面正半球
+- 无来自"地平线以下"的光
+
+> [!important] 向量Irradiance的价值
+> 可以将任意大小和形状的面光源，精确转换为等效的方向光，**无任何误差**
+
+**球形光源的解析解**：
+
+对于半径$r_l$、中心$\mathbf{p}_l$的均匀球形光源：
+
+$$\mathbf{l}_c = \frac{\mathbf{p}_l - \mathbf{p}}{||\mathbf{p}_l - \mathbf{p}||}, \quad c_{light} = L_l \frac{\pi r_l^2}{||\mathbf{p}_l - \mathbf{p}||^2}$$
+
+- 等效于点光源的距离平方反比衰减
+- 可添加修正：从球面开始衰减，最大距离衰减到0
+
+---
+
+#### 10.1.1 光泽材质
+
+对于非Lambertian表面，需要对BRDF和面光源进行积分：
+
+$$L_o(\mathbf{v}) = \int_{\omega_l} f(\mathbf{l}, \mathbf{v}) L_l (\mathbf{n} \cdot \mathbf{l})^+ d\omega_i$$
+
+**实时渲染的核心问题**：如何高效计算这个积分？
+
+##### 方法1：粗糙度修正（Roughness Modification）
+
+**Karis (Unreal Engine)**：
+
+$$\alpha' = \mathrm{saturate}\left(\alpha_g + \frac{r_l}{r}\right)$$
+
+- $\alpha_g$：原始GGX粗糙度
+- $r_l$：光源半径
+- $r$：光源到着色点距离
+
+**优点**：
+- 计算极简（一次加法）
+- 适用于中等粗糙度表面
+
+**缺点**：
+- 对镜面材质失效（波瓣始终光滑）
+- 无法模拟锐利的高光边缘
+- 高光拖尾处理不佳
+
+---
+
+##### 方法2：代表性点技术（Most Representative Point）
+
+**核心思想**：
+用单个点代表整个面光源，该点对BRDF贡献最大
+
+**Picott方法**：
+选择光源表面上，与反射向量夹角最小的点
+
+**Karis改进**（更快）：
+- 选择反射光线上距离球心最近的点
+- 计算球面上距离该点最近的点
+
+```cpp
+// 计算代表性点
+float3 r = reflect(-viewDir, normal);
+float3 centerToRay = dot(lightPos - surfacePos, r) * r - lightPos;
+float3 closestPoint = lightPos + normalize(centerToRay) * lightRadius;
+
+// 计算缩放因子（保持能量）
+float dist = length(closestPoint - surfacePos);
+float normFactor = pow(saturate(lightRadius / dist), 2);
+```
+
+**理论基础**：
+定积分中值定理
+
+$$\int_D f(x) dx = f(c) \cdot |D|$$
+
+其中$c$是函数值介于最小值和最大值之间的某点
+
+**优点**：
+- 适用于各种几何形状
+- 保持高光形状
+- 可扩展到复杂BRDF
+
+**缺点**：
+- 粗糙表面上过于"尖锐"
+- 与数值积分相比有偏差
+
+---
+
+##### 方法对比
+
+| 方法 | 计算成本 | 镜面材质 | 粗糙材质 | 高光形状 |
+|------|---------|---------|---------|---------|
+| 粗糙度修正 | 极低 | ❌ 失效 | ✅ 好 | 模糊 |
+| 代表性点 | 低 | ✅ 好 | ⚠️ 过尖 | 清晰 |
+| LTC | 中 | ✅ 优秀 | ✅ 优秀 | 准确 |
+| 数值积分 | 高 | ✅ 完美 | ✅ 完美 | 完美 |
+
+---
+
+#### 10.1.2 一般光源形状
+
+**管状光源（Tube Light / Capsule Light）**：
+
+- Picott：Lambertian的封闭解
+- 对于镜面：找线段上与反射向量最近的点
+- 可叠加球形光源近似
+
+**矩形光源（Card Light / Rect Light）**：
+
+**Drobot方法**：
+1. 找余弦项最大值点：$p_c$（法线方向投影）
+2. 找距离项最大值点：$p_r$（最近点）
+3. 代表性点：$p_{max} = t_m p_c + (1-t_m)p_r$
+4. 通过数值拟合找到最优$t_m$
+
+**线性变换余弦（LTC, Heitz et al.）**：
+
+**核心思想**：
+- 简单余弦波瓣可以在球面多边形上精确积分
+- 用3×3矩阵变换余弦波瓣，适应BRDF形状
+- 通过逆矩阵变换多边形，消去积分内的矩阵
+
+$$\int_{\Omega} \mathcal{L}(\mathbf{M}\mathbf{d}) d\omega \approx \int_{\mathbf{M}^{-1}\Omega} \cos(\theta) d\omega$$
+
+**优点**：
+- 准确度高（接近ground-truth）
+- 适用于任意多边形面光源
+- 支持纹理面光源
+
+**缺点**：
+- 需要离线预计算LUT（粗糙度、角度）
+- 计算成本比代表性点高
+
+---
+
+### 10.2 环境光照
+
+**定义**：
+来自半球各个方向的光照，而非离散的几个方向
+
+**与直接光照的区别**：
+- **直接光**：高radiance，小立体角（面光源）
+- **环境光**：中低radiance，大范围（天光、间接光）
+
+**最简环境光模型**：
+
+恒定radiance $L_A$：
+
+$$L_o(\mathbf{v}) = L_A R(\mathbf{v})$$
+
+其中$R(\mathbf{v})$是定向反照率（章节9.3）
+
+**Lambertian简化**：
+
+$$L_o = \frac{\rho_{ss}}{\pi} \int_{\Omega} L_A (\mathbf{n} \cdot \mathbf{l})^+ d\omega = \rho_{ss} L_A$$
+
+> [!warning] 遮挡的重要性
+> 简单环境光忽略了遮挡，导致画面平坦。解决方案见第11章（环境光遮蔽）
+
+---
+
+### 10.3 球面函数和半球函数
+
+**为什么需要球面函数表示？**
+- 入射radiance随方向变化
+- 需要紧凑表示半球/球面上的函数
+- 支持快速查询、积分、旋转
+
+**理想表示方法的特性**：
+1. 高效编码（投影）和解码（查询）
+2. 用少量系数表示任意函数，低误差
+3. 旋转不变性
+4. 易于计算和、乘积、积分、卷积
+
+---
+
+#### 10.3.1 简单表格形式
+
+**环境立方体（Ambient Cube）**：
+
+6个方向（±X, ±Y, ±Z）的平方余弦波瓣：
+
+$$F_{AC}(\mathbf{d}) = \mathbf{d} \odot \mathbf{d} \cdot \mathrm{sel}^+(\mathbf{c}^+, \mathbf{c}^-, \mathbf{d})$$
+
+- $\mathrm{sel}^+$：根据方向正负选择对应值
+- 只需6个颜色值
+- 重建质量较低
+
+**环境骰子（Ambient Dice）**：
+
+- 12个值（二十面体顶点）
+- 使用6个值重建（平方+四次余弦波瓣）
+- 质量显著优于环境立方体
+
+---
+
+#### 10.3.2 球面基底
+
+**球面高斯函数（Spherical Gaussian, SG）**：
+
+$$G(\mathbf{v}, \mathbf{d}, \lambda) = e^{\lambda(\mathbf{v} \cdot \mathbf{d} - 1)}$$
+
+- $\mathbf{d}$：波瓣方向（单位向量）
+- $\lambda \geq 0$：尖锐度（concentration parameter）
+- 也称von-Mises-Fisher分布
+
+**线性组合构造基底**：
+
+$$F(\mathbf{v}) \approx \sum_{k=1}^{N} w_k G(\mathbf{v}, \mathbf{d}_k, \lambda_k)$$
+
+**SG的优秀特性**：
+
+1. **乘积仍是SG**：
+
+$$G(\mathbf{d}_1, \lambda_1) \cdot G(\mathbf{d}_2, \lambda_2) = G(\mathbf{d}_m, \lambda_m)$$
+
+$$\mathbf{d}_m = \frac{\lambda_1\mathbf{d}_1 + \lambda_2\mathbf{d}_2}{||\lambda_1\mathbf{d}_1 + \lambda_2\mathbf{d}_2||}, \quad \lambda_m = ||\lambda_1\mathbf{d}_1 + \lambda_2\mathbf{d}_2||$$
+
+2. **积分有解析解**：
+
+$$\int_{\Omega} G(\mathbf{v}, \mathbf{d}, \lambda) d\omega = \frac{2\pi(1 - e^{-2\lambda})}{\lambda}$$
+
+**各向异性球面高斯（ASG）**：
+
+$$G(\mathbf{v}, [\mathbf{d},\mathbf{t},\mathbf{b}], [\lambda, \mu]) = (\mathbf{v} \cdot \mathbf{d})^+ e^{-\lambda(\mathbf{v} \cdot \mathbf{t})^2 - \mu(\mathbf{v} \cdot \mathbf{b})^2}$$
+
+- 沿切线空间不同方向有不同扩散
+- 适用于各向异性表面
+
+**缺点**：
+- 全局支持（每个波瓣影响所有方向）
+- 重建需计算所有N个波瓣
+
+---
+
+**球谐函数（Spherical Harmonics, SH）**：
+
+**核心特性**：
+- 正交基函数（内积为0）
+- 按频带排列（0阶=常数，1阶=线性，2阶=二次...）
+- 低频函数用少量系数即可表示
+
+**投影（编码）**：
+
+对于标准正交基，系数等于内积：
+
+$$k_j = \langle f_{target}(\mathbf{l}), f_j(\mathbf{l}) \rangle = \int_{\Omega} f_{target}(\mathbf{l}) f_j(\mathbf{l}) d\omega$$
+
+实践中用蒙特卡洛采样：
+
+$$k_j \approx \frac{1}{N} \sum_{i=1}^{N} f_{target}(\mathbf{l}_i) f_j(\mathbf{l}_i)$$
+
+**重建（解码）**：
+
+$$f(\mathbf{l}) \approx \sum_{j=0}^{n-1} k_j f_j(\mathbf{l})$$
+
+**球谐函数的优势**：
+1. 旋转不变性
+2. 卷积 = 系数点积
+3. 低频信号表示紧凑
+4. 频谱域运算（系数矩阵变换）
+
+**Ringing问题（Gibbs现象）**：
+
+用有限频带近似高频函数时产生振荡
+
+解决方案：
+- 预过滤（Windowing）
+- 增加频带数量
+- 对于irradiance，9个系数通常足够
+
+> [!tip] SH用于Irradiance
+> Ramamoorthi & Hanrahan证明：**9个SH系数**即可以1%误差表示任意irradiance环境贴图（见10.6.1）
+
+---
+
+#### 10.3.3 半球基底
+
+**AHD基底（Ambient/Highlight/Direction）**：
+
+恒定项 + 单一方向光：
+
+- A：环境光强度（RGB）
+- H：高光方向光强度（RGB）
+- D：主要光照方向（2个角度）
+
+总计：8个参数
+
+**应用**：
+- 《雷神之锤3》动态物体体积光照
+- 《使命召唤》系列
+
+**投影方法**：
+1. 先投影到9个SH系数
+2. 找最优线性方向（来自SH）
+3. 用最小二乘拟合A和H
+
+---
+
+**《半条命2》基底（Radiosity Normal Mapping）**：
+
+三个方向采样，在切线空间中：
+
+$$\mathbf{b}_0 = \frac{1}{\sqrt{6}}(-1, -1, 2)^T$$
+$$\mathbf{b}_1 = \frac{1}{\sqrt{2}}(-1, 1, 0)^T$$
+$$\mathbf{b}_2 = \frac{1}{\sqrt{2}}(1, 1, 0)^T$$
+
+**重建**：
+
+$$E(\mathbf{d}) \approx d_0E_0 + d_1E_1 + d_2E_2$$
+
+其中$d_k = \max(0, \mathbf{d} \cdot \mathbf{b}_k)$可预计算
+
+**优点**：
+- 重建快速（3个点积，3个乘法）
+- 质量优于低阶SH
+- 适合irradiance
+
+---
+
+**H-Basis（Habel, 2012）**：
+
+混合移位和非移位SH：
+- 经度：部分SH基底
+- 纬度：部分HSH基底（半球谐波）
+
+**优势**：
+- 比纯HSH计算更快
+- 仍保持正交性
+- 边缘处理优于HSH
+
+---
+
+### 10.4 环境映射
+
+**定义**：
+将球面函数记录在图像中，用纹理映射实现查找
+
+**核心假设**：
+- 光源和反射物体都位于远处
+- 入射radiance只依赖方向，不依赖位置
+- 不考虑自反射
+
+**环境映射的用途**：
+- 反射映射（Reflection Mapping）
+- 基于图像的光照（IBL）
+- Irradiance环境贴图
+
+---
+
+#### 10.4.1 经纬度映射（Latitude-Longitude Mapping）
+
+**原理**：
+类似地球地图投影，球面展开为矩形
+
+**球坐标转换**：
+
+$$\rho = \arccos(r_z), \quad \phi = \mathrm{atan2}(r_y, r_x)$$
+
+$$u = \frac{\phi + \pi}{2\pi}, \quad v = \frac{\rho}{\pi}$$
+
+**优点**：
+- 概念简单
+- 覆盖整个球面
+
+**缺点**：
+- 两极严重拉伸（纹素密度不均）
+- 硬件过滤在两极处失效
+- 超越函数计算昂贵
+
+---
+
+#### 10.4.2 球面映射（Sphere Mapping）
+
+**原理**：
+正交投影下观察完美反射球体所得图像
+
+**重建公式**：
+
+$$\mathbf{n} = \frac{(\mathbf{r}_x, \mathbf{r}_y, \mathbf{r}_z + 1)}{||\mathbf{r}_x, \mathbf{r}_y, \mathbf{r}_z + 1||}$$
+
+$$u = \frac{n_x}{2} + 0.5, \quad v = \frac{n_y}{2} + 0.5$$
+
+**优点**：
+- 计算简单（无超越函数）
+- 只有边缘一个奇异点
+
+**缺点**：
+- 仅对单一观察方向有效
+- 通常假设跟随相机（观察空间操作）
+- 边缘扭曲严重
+
+**MatCap着色**：
+- 同时使用法线和反射向量索引两个球面贴图
+- 令人信服但与视角无关
+
+---
+
+#### 10.4.3 立方体映射（Cube Mapping）
+
+**原理**：
+将环境投影到以相机为中心的立方体6个面
+
+**访问方式**：
+- 直接使用3D方向向量作为纹理坐标
+- GPU硬件自动选择面和插值
+- 无需复杂计算
+
+**优点**：
+- 与视角无关
+- 采样相对均匀
+- GPU原生支持
+- 跨面过滤正确
+
+**缺点**：
+- 6个纹理（实际硬件优化）
+- 立方体边缘和角落仍有轻微扭曲
+
+> [!tip] 立方体映射是当前标准
+> 通用性、准确性、GPU支持使其成为最流行的环境映射方法
+
+**等立方体（Isocube）**：
+- 改进的立方体映射
+- 更低的采样率差异
+- 仍利用立方体映射硬件
+
+---
+
+#### 10.4.4 其他投影方法
+
+**双抛物面映射（Dual Paraboloid）**：
+
+两个抛物面投影（正面+背面）：
+
+$$u = \frac{r_x}{2(1 \pm r_z)} + 0.5, \quad v = \frac{r_y}{2(1 \pm r_z)} + 0.5$$
+
+- 比球面映射采样更均匀
+- 两个纹理间接缝处理复杂
+
+---
+
+**八面体映射（Octahedral Mapping）**：
+
+将球面映射到八面体，展开为正方形：
+
+**L1归一化**：
+
+$$\mathbf{r}' = \frac{\mathbf{r}}{|r_x| + |r_y| + |r_z|}$$
+
+**正面**（$r_z \geq 0$）：
+
+$$u = 0.5 r'_x + 0.5, \quad v = 0.5 r'_y + 0.5$$
+
+**背面**（$r_z < 0$）：
+
+$$u = 0.5(1 - |r'_y|)\mathrm{sign}(r'_x) + 0.5$$
+$$v = 0.5(1 - |r'_x|)\mathrm{sign}(r'_y) + 0.5$$
+
+**优点**：
+- 单个正方形纹理
+- 接缝与纹理边缘对齐（wrap采样处理）
+- 扭曲类似立方体映射
+- 可用2个坐标表示3D方向（压缩）
+
+---
+
+### 10.5 基于图像的高光照明
+
+**高光探针（Specular Light Probe）**：
+用于模拟无限远光源的镜面反射
+
+**核心问题**：
+如何用环境贴图表示光泽反射（不只是完美镜面）？
+
+---
+
+#### 10.5.1 预过滤环境映射
+
+**基本思路**：
+对环境贴图进行模糊，模拟粗糙表面
+
+**非线性模糊**：
+- 不同部分以不同方式模糊
+- 考虑纹素覆盖的立体角
+- 工具：AMD CubeMapGen
+
+**Mipmap存储**：
+- 不同mipmap层级 = 不同粗糙度
+- Level 0：完美镜面
+- Level N：完全模糊
+
+**运行时使用**：
+
+```hlsl
+float3 r = reflect(-viewDir, normal);
+float mipLevel = roughness * maxMipLevel;
+float3 envColor = texCubeLod(envMap, r, mipLevel).rgb;
+```
+
+**径向对称假设**：
+- 假设BRDF波瓣绕反射向量对称
+- 实践中：令$\mathbf{n} = \mathbf{v} = \mathbf{r}$
+- 需要粗糙度修正（Phong↔Blinn-Phong：指数/4）
+
+**地平线裁剪问题**：
+- 掠射角下，波瓣被表面裁剪
+- 预过滤无法处理（只有反射方向信息）
+- 导致掠射角过亮
+
+---
+
+#### 卷积环境贴图
+
+**目标积分**：
+
+$$\int_{\Omega} D(\mathbf{l}, \mathbf{v}) L_i(\mathbf{l}) d\omega$$
+
+**蒙特卡洛方法**：
+
+$$\approx \frac{1}{N} \sum_{k=1}^{N} \frac{D(\mathbf{l}_k, \mathbf{v}) L_i(\mathbf{l}_k)}{p(\mathbf{l}_k, \mathbf{v})}$$
+
+**重要性采样**：
+- $p(\mathbf{l})$匹配$D(\mathbf{h})$的形状
+- 大幅减少所需样本数
+- 对于尖锐波瓣尤其重要
+
+**锥形采样优化**：
+- 不采样单一方向，而是锥形区域
+- 使用mipmap层级近似
+- 引入偏差但大幅降低噪声
+
+---
+
+#### 10.5.2 微表面BRDF的分裂积分近似
+
+**问题**：
+之前的方法无法正确处理$G_2$和$F$项
+
+**分裂积分近似**（Karis, Lazarov, Gotanda）：
+
+$$\int f_{smf}(\mathbf{l}, \mathbf{v}) L_i(\mathbf{l}) (\mathbf{n} \cdot \mathbf{l}) d\omega \approx \left[\int D(\mathbf{r}) L_i(\mathbf{l}) (\mathbf{n} \cdot \mathbf{l}) d\omega\right] \left[\int f_{smf}(\mathbf{l}, \mathbf{v}) d\omega\right]$$
+
+**第一项**：预过滤环境贴图
+- 假设$\mathbf{n} = \mathbf{v} = \mathbf{r}$（径向对称）
+- 存储在立方体贴图mipmap中
+- 输入：反射向量、粗糙度
+
+**第二项**：镜面反射率$R_{spec}(\mathbf{v})$
+- 依赖：仰角$\theta$、粗糙度$\alpha$、$F_0$
+
+**Karis/Lazarov优化**：
+
+提取$F_0$：
+
+$$R_{spec} = F_0 \cdot \mathrm{scale} + \mathrm{bias}$$
+
+- scale和bias只依赖$(\theta, \alpha)$
+- 2D LUT（单个双通道纹理）
+
+**Shader实现**：
+
+```hlsl
+// 预过滤环境贴图查询
+float3 prefilteredColor = texCubeLod(envMap, r, roughness * maxMip).rgb;
+
+// Rspec LUT查询
+float2 envBRDF = tex2D(brdfLUT, float2(NdotV, roughness)).rg;
+
+// 组合
+float3 specular = prefilteredColor * (F0 * envBRDF.x + envBRDF.y);
+```
+
+**精度**：
+- 恒定环境贴图：精确
+- 一般环境贴图：低频时很好
+- 高频时有误差（径向对称假设）
+
+**Lagarde改进**：
+根据粗糙度，将采样向量从反射方向向法线方向倾斜，补偿地平线裁剪
+
+---
+
+#### 10.5.3 不对称和各向异性波瓣
+
+**问题**：
+- 微表面BRDF围绕半向量$\mathbf{h}$，而非反射向量$\mathbf{r}$
+- 即使各向同性BRDF，也不是径向对称的
+- 预过滤假设$\mathbf{n} = \mathbf{v} = \mathbf{r}$引入误差
+
+**Kautz & McCool方法**：
+- 找最佳径向对称波瓣近似当前BRDF
+- 使用多个样本平均
+- 支持拉伸高光
+
+**Iwanicki & Pesce（GGX）**：
+- 用Nelder-Mead优化找代表性波瓣
+- 利用GPU各向异性过滤加速
+
+**McAuley（延迟渲染）**：
+- 调整采样位置到BRDF峰值
+- G-buffer中只编码少量参数
+
+**Lafortune BRDF + 预过滤**：
+- Lafortune波瓣 = 扰动的Phong波瓣
+- 可用预过滤mipmap
+- 支持各向异性和逆反射
+
+---
+
+### 10.6 Irradiance环境映射
+
+**Irradiance vs Radiance**：
+- Irradiance环境贴图：用法线索引，存储irradiance
+- Radiance环境贴图（高光）：用反射向量索引，存储radiance
+
+**Irradiance的特点**：
+- 极其模糊（余弦波瓣卷积）
+- 可用低分辨率存储
+- 对Lambert表面精确
+- 无地平线裁剪问题
+
+**计算过程**：
+
+$$E(\mathbf{n}) = \int_{\Omega} L_i(\mathbf{l}) (\mathbf{n} \cdot \mathbf{l})^+ d\omega$$
+
+对于每个法线方向，对半球范围内的环境贴图进行余弦加权积分
+
+---
+
+#### 10.6.1 球谐Irradiance
+
+**Ramamoorthi & Hanrahan关键结论**：
+
+> [!success] 9个SH系数 = 1%误差
+> 仅用前9个球谐系数（3个频带），即可以1%误差表示任意irradiance环境贴图
+
+**存储需求**：
+- 9个RGB系数 = 27个浮点数
+- 远小于立方体贴图
+
+**间接光照优化**：
+- 只用4个系数（1个常数+3个线性）
+- 12个浮点数
+- 对于低频间接光足够
+
+**radiance → irradiance转换**：
+
+球面卷积在SH中十分简单：
+
+$$k_j^E = k_j^L \cdot k_j^{\cos+} \cdot \sqrt{\frac{4\pi}{2l+1}}$$
+
+- $k_j^E$：irradiance的SH系数
+- $k_j^L$：radiance的SH系数
+- $k_j^{\cos+}$：clamped余弦的SH系数
+- $l$：频带索引
+
+**Clamped余弦的SH系数**（前9个）：
+
+$$k_0 = \pi, \quad k_1 = 2\pi/3, \quad k_2 = \pi/4, \quad k_3 \approx 0, \quad ...$$
+
+高阶系数快速衰减，解释了为何9个系数足够
+
+**动态光源添加**：
+
+点光源、球形光源、圆盘光源都有简单的SH解析表达
+
+$$k_j^{total} = k_j^{static} + \sum_{\text{lights}} k_j^{light}$$
+
+对于与z轴对齐的光源（球带谐波），旋转只需点积操作
+
+**重建**：
+
+$$E(\mathbf{n}) = \sum_{j=0}^{8} k_j f_j(\mathbf{n})$$
+
+基函数$f_j$是简单多项式，计算快速
+
+---
+
+#### 10.6.2 其他表示方法
+
+**半球光照（Hemisphere Lighting）**：
+
+两种颜色模型（天空+地面）：
+
+$$E = \frac{\pi}{2}\left[\cos\theta \cdot c_{sky} + (1-\cos\theta) \cdot c_{ground}\right]$$
+
+Baker & Boyd近似（更快）：
+
+$$E \approx \mathrm{lerp}(c_{ground}, c_{sky}, 0.5\cos\theta + 0.5)$$
+
+- $\cos\theta$通常是法线的y分量（世界空间）
+- 极其廉价
+
+**三重光源（Trilight, Forsyth）**：
+- 方向光 + 双向光 + 半球光的统一框架
+- 环绕光照（Wrap Lighting）作为特例
+
+**环境立方体/骰子**：
+- 见10.3.1
+- 适用于irradiance的低频表示
+
+---
+
+### 10.7 误差来源
+
+#### 实时渲染的根本限制
+
+实时渲染中，我们**永远不直接使用给定的BRDF模型**，而是使用各种近似：
+
+**BRDF近似类型**：
+1. **显式近似**：LTC（拟合中间模型）
+2. **隐式近似**：预过滤立方体贴图（只在特定条件下精确）
+
+**不同光照表示间的一致性**：
+- 比绝对精度更重要
+- 解析光源 vs 环境光照的视觉连贯性
+- 材质参数在不同光照下的一致表现
+
+---
+
+#### 遮挡问题
+
+**漏光（Light Leaking）**：
+- 应该被遮挡的光线泄漏进来
+- 视觉上比缺少光线更明显
+- 面光源的阴影尤其困难
+
+**当前限制**：
+- 标量遮挡因子 × 光照贡献（错误）
+- 正确方法：BRDF积分中考虑遮挡
+- 环境光照无主要方向，无法使用阴影图
+
+---
+
+#### 光源模型的简化
+
+**均匀radiance假设**：
+- 实际光源发射通常有方向性
+- Gobo、Cucoloris、Cookie（遮光片）
+- Honeycombs（蜂窝栅格）
+
+**光学系统影响**：
+- 镜面和反光板改变发射模式
+- 虚拟光源位置偏移
+- 实际发射角度分布复杂
+
+**IES光源描述文件**：
+- 照明工程学会标准
+- 记录真实光源的角度发射特性
+- 但不包含表面发射分布
+
+---
+
+#### 设计哲学
+
+> [!important] 渲染目标
+> **不是物理完美**，而是**感知可信的图像再现**（Image Reproduction）
+
+**实用主义**：
+- 简化假设可生成有用的视觉效果
+- 艺术家可通过调参补偿误差
+- 目标：令人信服，而非绝对准确
+
+**基于物理的价值**：
+- 让艺术家更容易创建可信图像
+- 材质在不同光照下行为一致
+- 不是目标本身，而是手段
+
+---
+
+### 第十章核心要点总结
+
+#### 实时面光源积分方法
+
+| 方法 | 原理 | 成本 | 精度 | 适用 |
+|------|------|------|------|------|
+| 向量Irradiance | 精确转换 | 极低 | 完美 | 仅Lambertian |
+| 粗糙度修正 | 增大$\alpha$ | 极低 | 中 | 中等粗糙度 |
+| 代表性点 | 单点近似 | 低 | 中高 | 通用 |
+| LTC | 变换余弦波瓣 | 中 | 高 | 通用（需预计算） |
+| 数值积分 | 蒙特卡洛 | 高 | 完美 | 离线/验证 |
+
+---
+
+#### 环境映射投影方法
+
+| 方法 | 纹理数量 | 采样均匀性 | 计算复杂度 | GPU支持 | 主要用途 |
+|------|---------|----------|----------|---------|---------|
+| 经纬度 | 1 | 差（两极） | 高（超越函数） | 是 | 传统方法 |
+| 球面 | 1 | 差（边缘） | 低 | 是 | Light Probe |
+| 立方体 | 6 | 好 | 低 | 原生 | **标准方法** |
+| 八面体 | 1 | 好 | 中 | 无（手动） | 压缩/移动 |
+
+---
+
+#### 球面函数表示对比
+
+| 表示 | 系数数量 | 重建成本 | 旋转 | 乘积/积分 | 主要用途 |
+|------|---------|---------|------|----------|----------|
+| 环境立方体 | 6 | 极低 | 简单 | 简单 | 实时低精度 |
+| SG | N个波瓣 | 低 | 中 | 解析 | 高光、PRT |
+| SH | 9-25 | 中 | 矩阵 | 点积 | **Irradiance** |
+| H-Basis | 4-9 | 低 | 快 | 中 | 半球函数 |
+| 立方体贴图 | 6×N² | 低 | 硬件 | 昂贵 | 高频环境 |
+
+---
+
+#### 分裂积分近似（核心技术）
+
+**公式**：
+
+$$\int f_{smf} L_i (\mathbf{n} \cdot \mathbf{l}) d\omega \approx \underbrace{\int D(\mathbf{r}) L_i (\mathbf{n} \cdot \mathbf{l}) d\omega}_{\text{预过滤环境贴图}} \cdot \underbrace{\int f_{smf} d\omega}_{\text{Rspec LUT}}$$
+
+**存储需求**：
+1. 预过滤立方体贴图（多层mipmap）
+2. 2D LUT（$\theta$, $\alpha$）→ (scale, bias)
+
+**精度**：
+- 恒定环境：精确
+- 低频环境：优秀
+- 高频环境：有偏差（径向对称假设）
+
+---
+
+#### 球谐Irradiance（必记）
+
+> [!success] 关键数字
+> - **9个SH系数**（3频带）= 1% irradiance误差
+> - **4个SH系数**（0-1频带）= 间接光足够
+> - **27个浮点数**（9×RGB）< 64×64立方体贴图
+
+**快速radiance→irradiance**：
+
+$$k_j^E = k_j^L \cdot A_l$$
+
+其中$A_l$是预计算常数（clamped余弦的SH系数）
+
+---
+
+#### 实用建议
+
+**面光源选择**：
+- 小光源/粗糙表面 → 点光源
+- 中等场景 → 代表性点
+- 追求质量 → LTC
+- 验证真值 → 蒙特卡洛
+
+**环境光照**：
+- 高光：预过滤立方体贴图 + 分裂积分
+- 漫反射：9系数SH（或立方体贴图最低mip）
+- 动态：实时生成立方体贴图 → SH投影
+
+**性能优化**：
+- 静态环境：离线预计算所有
+- 动态环境：快速卷积技术（Manson & Sloan）
+- 移动平台：降低立方体贴图分辨率，少用SH系数
+
+**常见陷阱**：
+- ❌ 假设所有光源均匀发射
+- ❌ 忽略地平线裁剪
+- ❌ 混淆irradiance和radiance贴图
+- ❌ 在sRGB空间进行光照计算
+- ❌ 动态光源不更新SH系数
+
+---
+
+#### 延伸阅读
+
+**关键论文**：
+- Ramamoorthi & Hanrahan (2001)：SH Irradiance理论
+- Karis (2013)：分裂积分近似
+- Heitz et al. (2016)：LTC方法
+
+**相关章节**：
+- 第9章：BRDF理论基础
+- 第11章：全局光照和环境光遮蔽
+- 第20章：延迟着色与多光源
+
+---
+
+## Chapter 11 - Global Illumination 全局光照
+
+### 11.1 渲染方程
+
+**核心概念**
+- 反射方程 vs 渲染方程
+- 渲染方程（Kajiya 1986）：`Lo = Le + ∫ f·Lo(ray_cast)·(n·l)+ dl`
+- **递归性质**：入射radiance = 其他表面的出射radiance
+
+**光线传输路径符号（Heckbert表示法）**
+- L：光源，E：眼睛
+- D：漫反射，S：镜面反射
+- 例：`LD*E`（辐射度）、`L(D|S)*E`（完整渲染方程）
+
+> [!important] 关键理解
+> 渲染方程的线性性质：光源强度翻倍 → 着色结果翻倍
+
+---
+
+### 11.2 通用全局光照
+
+#### 11.2.1 辐射度（Radiosity）
+
+**原理**
+- 有限元法，计算漫反射表面间光线反弹
+- 形状因子（Form Factor）：`Fij = ∫∫ V(i,j)·cosθi·cosθj / (π·dij²) dAi dAj`
+- 路径表示：`LD*E`
+
+**局限性**
+- 计算复杂度高（线性系统求解）
+- 扩展性差
+- 仅限漫反射
+
+> [!tip] 现代应用
+> 形状因子预计算 + 运行时光线传播（见11.5.3）
+
+#### 11.2.2 光线追踪与路径追踪
+
+**蒙特卡洛积分**
+- 通过采样点估计积分值
+- 路径追踪：沿光线反弹构建路径
+- 方差 = 噪声，需要大量样本
+
+**重要性采样**
+- 向主要光线方向发射更多光线
+- 降低方差，减少噪声
+
+**路径追踪能力**
+- 光泽/漫反射材质
+- 软阴影
+- 透明物体、焦散
+- 体积散射
+
+---
+
+### 11.3 环境光遮蔽（Ambient Occlusion）
+
+#### 11.3.1 理论基础
+
+**遮蔽系数kA**
+```
+kA = (1/π)∫ v(p,l)·(n·l)+ dl
+```
+- v(p,l)：可见性函数（0或1）
+- 范围：[0, 1]
+- 物理意义：未被遮挡半球的余弦加权百分比
+
+**环境法线（Bent Normal）**
+```
+nb = normalize(∫ v(p,l)·l·(n·l)+ dl)
+```
+- 未遮挡方向的余弦加权平均
+- 可替代几何法线提高精度
+
+#### 11.3.2 Obscurance vs Occlusion
+
+**距离映射函数ρ(l)**
+- 代替可见性函数v(l)
+- 引入最大距离dmax
+- 超出距离不计算（加速）
+
+> [!warning] 物理不正确但视觉可信
+> dmax需手动调整
+
+#### 11.3.3 相互反射近似
+
+**Stewart-Langer方法**
+```
+E ≈ kA·Li·π / (1 - ρss·(1-kA))
+```
+- 假设遮挡方向radiance = 当前点出射radiance
+- 依赖次表面反照率ρss
+
+**Jimenez多项式拟合**
+- 离线路径追踪生成ground-truth
+- 三次多项式拟合kA和ρss到遮蔽值
+
+#### 11.3.4 预计算AO（烘焙）
+
+**蒙特卡洛方法**
+```
+kA ≈ (4/N)·Σ v(li)
+```
+- N个方向均匀采样
+- 或余弦加权采样（Malley方法）
+
+**存储方式**
+- 纹理（UV空间）
+- 体积（3D网格）
+- 顶点色
+
+**工具**
+- CPU：Embree
+- GPU：OptiX
+
+**环境光遮蔽场/体**
+- Kontkanen-Laine：立方体贴图存储系数
+- Malmer：3D网格存储kA和bent normal
+
+> [!success] 案例：《命运》
+> 预计算AO作为基础间接光照
+> 支持动态天光变化
+
+#### 11.3.5 动态计算AO
+
+**物体空间方法**
+- Bunnell圆盘元素法：O(n log n)
+- SDF方法（Evans、Wright）
+- 球体近似法（Ren等人）
+
+#### 11.3.6 屏幕空间AO（SSAO系列）
+
+**Crytek SSAO**
+- z-buffer采样
+- 恒定开销
+
+**HBAO（Horizon-Based AO）**
+- 视界角方法
+- 更准确
+
+**GTAO（Ground-Truth AO）**
+- 包含余弦项
+- 最准确的SSAO
+
+**优化技术**
+- 空间抖动
+- 双边滤波
+- 时域超采样（TAA）
+
+> [!tip] 实现要点
+> - 采样半径：0.5-2.0米
+> - 采样数：8-32个
+> - 深度阈值：避免远距离误检测
+
+#### 11.3.7 使用AO着色
+
+**简化着色方程**
+```
+Lo = kA·ρss·∫ Li(l)·K(n,l) dl
+```
+- K：归一化余弦核
+- 适用于漫反射材质
+- 配合bent normal提高精度
+
+---
+
+### 11.4 定向遮蔽（Directional Occlusion）
+
+**核心思想**
+- AO的扩展：保留方向信息
+- 不仅知道"多少光被遮挡"
+- 还知道"哪些方向被遮挡"
+
+#### 11.4.1 预计算方法
+
+**视界映射（Horizon Mapping）**
+- 存储不同方位的视界角
+- 用于精确光源阴影
+
+**环境光圈照明**
+- 椭圆/圆锥近似未遮挡区域
+
+**编码方式**
+- 球谐函数
+- SSDF
+- 等
+
+#### 11.4.2 动态计算
+
+- 锥形追踪（Cone Tracing）
+- 屏幕空间环境圆锥
+- 球谐指数方法
+
+#### 11.4.3 着色应用
+
+**面光源软阴影**
+- Lambert球面多边形积分
+- 精确光源方向阴影
+
+---
+
+### 第十一章核心要点总结
+
+#### 渲染方程核心
+
+**Kajiya渲染方程**：
+$$L_o(p,v) = L_e(p,v) + \int_\Omega f(l,v)L_o(r(p,l),-l)(n \cdot l)^+ dl$$
+
+**Heckbert路径表示**：
+- `LE`：直接看到光源
+- `L(D|S)*E`：完整渲染方程（任意次反弹）
+- `LD*E`：辐射度方法（仅漫反射）
+
+---
+
+#### 全局光照方法对比
+
+| 方法 | 路径 | 成本 | 质量 | 实时性 |
+|------|------|------|------|--------|
+| 辐射度 | LD*E | 高（预计算） | 好 | 实时（预计算） |
+| 路径追踪 | L(D\|S)*E | 极高 | 完美 | 离线 |
+| 环境光遮蔽 | 简化间接光 | 低-中 | 中 | 实时 |
+| 定向遮蔽 | 带方向的AO | 中 | 好 | 实时（预计算/SSDO） |
+
+---
+
+#### AO技术选择指南
+
+**预计算AO（烘焙）**：
+- 适用：静态场景、光照变化小
+- 方法：蒙特卡洛采样（Embree/OptiX）
+- 存储：纹理/体积/顶点色
+- 案例：《命运》天光系统
+
+**动态AO（实时）**：
+- 物体空间：SDF、圆盘元素、球体近似
+- 屏幕空间SSAO：Crytek、HBAO、GTAO
+- 参数：半径0.5-2.0m，采样8-32个
+
+> [!important] SSAO系列进化
+> Crytek SSAO → HBAO（视界角）→ GTAO（包含余弦项）
+> 精度逐步提升，GTAO最接近ground-truth
+
+---
+
+#### 核心公式速查
+
+**环境遮蔽系数**：
+$$k_A = \frac{1}{\pi}\int_\Omega v(p,l)(n \cdot l)^+ dl$$
+
+**环境法线（Bent Normal）**：
+$$n_b = \text{normalize}\left(\int_\Omega v(p,l) \cdot l \cdot (n \cdot l)^+ dl\right)$$
+
+**相互反射近似（Stewart-Langer）**：
+$$k = \frac{k_A}{1 - \rho_{ss}(1-k_A)}$$
+
+---
+
+#### 实用建议
+
+**选择合适的AO方案**：
+- 静态 + 高质量 → 预计算AO烘焙
+- 动态场景 → GTAO/HBAO
+- 移动平台 → SSAO（降低采样数）
+- 需要方向信息 → 定向遮蔽/bent normal
+
+**优化技巧**：
+- 空间抖动降低采样数
+- 双边滤波保留边缘
+- 时域超采样（TAA）积累样本
+- 使用bent normal替代几何法线提升精度
+
+**常见陷阱**：
+- ❌ 忘记考虑相互反射（过暗）
+- ❌ SSAO采样半径过大（误检测）
+- ❌ 未对AO结果进行滤波（噪声）
+- ❌ 将AO应用到高光项（物理不正确）
+
+---
+
+## Chapter 12 - Image-Space Effects 图像空间特效
+
+### 核心特点
+- 利用GPU并行处理
+- 基于屏幕填充三角形（比四边形更高效）
+- 不依赖场景几何复杂度
+
+---
+
+### 12.1 图像处理
+
+#### 12.1.1 双边滤波（Bilateral Filtering）
+
+**原理**
+- 边缘保留的平滑滤波
+- 权重 = 空间距离权重 × 颜色相似度权重
+
+**公式**
+```
+I_filtered(x) = Σ I(xi)·Gs(||xi-x||)·Gr(|I(xi)-I(x)|) / normalization
+```
+- Gs：空间高斯核
+- Gr：颜色（或深度）高斯核
+
+**应用**
+- 降噪
+- 深度图平滑
+- AO滤波
+
+> [!tip] 参数设置
+> - 空间σ：2-5像素
+> - 颜色σ：0.1-0.3
+
+---
+
+### 12.2 重投影技术（Reprojection）
+
+**核心思想**
+- 利用前帧信息加速当前帧
+- 使用运动向量（Motion Vector）关联帧间像素
+
+**运动向量生成**
+```
+MV = CurrentPosSS - PreviousPosSS
+```
+
+**应用**
+- TAA（Temporal Anti-Aliasing）
+- 时域超采样
+- 历史帧复用
+
+**处理难点**
+- 遮挡
+- 不连续
+- Disocclusion（新出现区域）
+
+> [!warning] 常见问题
+> Ghosting（重影）：历史帧权重过高
+> 解决：色彩空间Clamp、方差裁剪
+
+---
+
+### 12.3 镜头光晕和泛光（Lens Flare & Bloom）
+
+**泛光（Bloom）**
+
+**实现流程**
+1. 提取亮区：`bright = max(color - threshold, 0)`
+2. 高斯模糊：多级降采样 + 模糊
+3. 混合：`final = scene + bloom·strength`
+
+**优化**
+- Dual Kawase Blur
+- 逐级模糊（Mipmap Chain）
+
+**参数**
+- 阈值：0.8-1.2
+- 强度：0.1-0.5
+
+**镜头光晕**
+- 模拟镜头光学瑕疵
+- Starburst、光晕环
+- 通常使用预制纹理
+
+---
+
+### 12.4 景深（Depth of Field）
+
+**物理原理**
+- 模拟相机光圈
+- 焦外模糊（Bokeh）
+
+**实现方法**
+
+**1. 多层渲染**
+- 焦点物体：清晰
+- 远场：模糊
+- 近场：模糊
+- 按前后顺序合成
+
+**2. 后处理CoC**
+
+**CoC（Circle of Confusion）计算**
+```
+CoC = abs(depth - focusDepth) * aperture / (depth * (focusDepth - aperture))
+```
+
+**模糊策略**
+- 可变半径高斯模糊
+- 散景形状采样
+
+> [!tip] 参数
+> - 焦距：根据场景
+> - 光圈：f/2.8 - f/16
+> - CoC max：10-30像素
+
+---
+
+### 12.5 运动模糊（Motion Blur）
+
+**目的**
+- 模拟相机曝光
+- 减少交互延迟感
+- 提升流畅度
+
+**实现方法**
+
+**1. 基于速度的模糊**
+```
+velocity = (currentPos - previousPos) / deltaTime
+color = Σ sample(uv + velocity·t, weights[t])
+```
+
+**2. 累积缓冲**
+- 多帧混合
+- 成本高
+
+**优化**
+- Tile-based max velocity
+- 变长采样
+
+> [!tip] 参数
+> - 采样数：5-15个
+> - 速度缩放：0.5-2.0
+
+---
+
+### 第十二章核心要点总结
+
+#### 图像空间特效优势
+
+**核心特点**：
+- 恒定开销：与几何复杂度无关
+- GPU友好：高度并行化
+- 灵活实现：后处理pipeline
+
+---
+
+#### 关键技术对比
+
+| 技术 | 成本 | 质量 | 依赖 | 主要用途 |
+|------|------|------|------|----------|
+| 双边滤波 | 低 | 好 | 深度/颜色 | 降噪、边缘保留平滑 |
+| TAA | 低 | 优秀 | 运动向量 | 抗锯齿、超采样 |
+| Bloom | 低 | 好 | 亮度阈值 | 辉光、镜头效果 |
+| DoF | 中 | 好 | 深度 | 景深、焦点控制 |
+| Motion Blur | 中 | 好 | 速度场 | 运动感、流畅度 |
+
+---
+
+#### 重投影技术（核心）
+
+**运动向量生成**：
+```glsl
+MV = CurrentPosSS - PreviousPosSS
+```
+
+**应用**：
+- TAA（Temporal Anti-Aliasing）
+- 时域超采样
+- 历史帧复用
+
+**关键挑战**：
+- Disocclusion（新出现区域）
+- Ghosting（重影）
+
+**解决方案**：
+- 色彩空间Clamp
+- 方差裁剪
+- 最近深度检测
+
+> [!important] TAA已成标配
+> 现代游戏几乎都使用TAA，比MSAA更高效且质量更好
+
+---
+
+#### 参数速查表
+
+**Bloom**：
+```
+阈值: 0.8-1.2
+强度: 0.1-0.5
+迭代: 4-6次（降采样+模糊）
+```
+
+**景深**：
+```
+焦距: 场景相关
+光圈: f/2.8 - f/16
+CoC max: 10-30像素
+```
+
+**运动模糊**：
+```
+采样数: 5-15个
+速度缩放: 0.5-2.0
+曝光时间: 1/帧率
+```
+
+**双边滤波**：
+```
+空间σ: 2-5像素
+颜色σ: 0.1-0.3
+深度σ: 0.01-0.1
+```
+
+---
+
+#### 实用建议
+
+**性能优化**：
+- Bloom用Dual Kawase Blur
+- DoF用可变半径模糊
+- Motion Blur使用Tile-based max velocity
+- 重投影优先使用硬件插值
+
+**质量提升**：
+- TAA结合空间抗锯齿（如FXAA）
+- Bloom使用更多迭代层级
+- CoC考虑焦外高光保护
+- 运动模糊支持透明物体
+
+**常见陷阱**：
+- ❌ TAA历史帧权重过高（ghosting）
+- ❌ Bloom阈值过低（全屏发光）
+- ❌ DoF在CoC不连续处产生artifacts
+- ❌ 运动模糊速度向量不准确
+
+---
+
+## Chapter 13 - Beyond Polygons 超越多边形
+
+### 核心思想
+- 非多边形表示方法
+- 性能优化技术
+- 替代几何表示
+
+---
+
+### 13.1 渲染频谱
+
+**概念**
+- 从完全几何到完全图像
+- 中间各种混合方法
+
+---
+
+### 13.2-13.3 天空盒（Skybox）
+
+**实现**
+- 立方体贴图
+- 球面贴图
+- 无限远假设
+
+**优化**
+- 最后渲染（减少overdraw）
+- 深度测试优化
+
+---
+
+### 13.4 光场渲染（Light Field Rendering）
+
+**4D光场**
+- 记录空间中所有光线
+- 7D Plenoptic Function简化
+
+---
+
+### 13.5 Sprite和图层
+
+**2D元素**
+- 粒子
+- UI
+- 远景细节
+
+---
+
+### 13.6 广告牌技术（Billboard）
+
+#### 13.6.1 屏幕对齐（Screen-Aligned）
+
+**实现**
+```
+right = cameraRight
+up = cameraUp
+forward = cameraForward
+```
+
+**应用**
+- 粒子
+- UI元素
+
+#### 13.6.2 面向世界（World-Oriented）
+
+**实现**
+```
+forward = normalize(cameraPos - billboardPos)
+right = cross(worldUp, forward)
+up = cross(forward, right)
+```
+
+**应用**
+- 树木
+- 远景建筑
+
+#### 13.6.3 轴向广告牌（Axial）
+
+**特点**
+- 固定一个轴（如Y轴）
+- 绕轴旋转面向相机
+
+#### 13.6.4 Impostor
+
+**概念**
+- 将复杂物体渲染到纹理
+- 用广告牌显示
+
+**更新策略**
+- 距离阈值
+- 角度阈值
+- 定时更新
+
+> [!tip] 使用场景
+> - 远景LOD
+> - 重复实例
+> - 复杂静态物体
+
+---
+
+### 13.7 位移技术（Displacement）
+
+**方法**
+- 视差映射（见工作笔记-图形渲染知识总结.md）
+- 曲面细分位移
+
+---
+
+### 13.8 粒子系统
+
+#### 13.8.1 粒子着色
+
+**光照**
+- 顶点光照（快）
+- 自发光（常用）
+- 环境光照
+
+**体积阴影**
+- Splatting方法
+- 飞溅到阴影贴图
+- 透光率累积：`Tr = 1 - α`
+
+**FOM（Fourier Opacity Mapping）**
+- 傅里叶系数存储透光率
+- 平滑函数，减少存储
+
+#### 13.8.2 粒子模拟
+
+**GPU加速**
+- Compute Shader
+- Transform Feedback
+- 物理模拟
+
+---
+
+### 13.9 点渲染（Point-Based Rendering）
+
+**应用**
+- 点云
+- Surfels
+
+---
+
+### 13.10 体素（Voxel）
+
+#### 体素渲染
+- 光线步进
+- 体积数据可视化
+
+#### 应用
+- 医学成像
+- 地形
+- GI（体素化场景）
+
+---
+
+### 第十三章核心要点总结
+
+#### 渲染频谱概念
+
+**从几何到图像**：
+```
+完全几何 → 混合方法 → 完全图像
+   ↓          ↓           ↓
+  3D模型   Billboard   Skybox
+```
+
+**核心思想**：在不同LOD层级使用不同表示方法
+
+---
+
+#### 广告牌技术对比
+
+| 类型 | 朝向方式 | 自由度 | 适用场景 |
+|------|---------|--------|----------|
+| Screen-Aligned | 完全面向相机 | 3 DOF | 粒子、UI、远景植被 |
+| World-Oriented | 垂直固定 | 1 DOF（绕Y轴） | 树木、远景建筑 |
+| Axial | 固定一轴旋转 | 1 DOF | 圆柱形物体 |
+| Impostor | 动态更新 | 0 DOF（静态） | 复杂静态物体LOD |
+
+---
+
+#### 关键技术选择
+
+**远景渲染**：
+- 简单物体 → 屏幕对齐广告牌
+- 竖直物体 → 世界对齐广告牌
+- 复杂物体 → Impostor（RTT）
+- 超远景 → Skybox/天空盒
+
+**粒子系统**：
+- 光照：顶点光照/自发光
+- 阴影：Splatting + 透光率累积
+- 体积阴影：FOM（Fourier Opacity Mapping）
+- 模拟：GPU Compute Shader
+
+**体素应用**：
+- GI：体素化场景 + 光线传播
+- 医学：体积数据可视化
+- 地形：程序化生成
+
+---
+
+#### 优化策略
+
+**Billboard优化**：
+```glsl
+// 顶点着色器生成四边形
+vec3 right = cameraRight * size;
+vec3 up = cameraUp * size;
+positions[0] = center - right - up;
+positions[1] = center + right - up;
+positions[2] = center + right + up;
+positions[3] = center - right + up;
+```
+
+**Impostor更新策略**：
+- 距离阈值：超过X米更新
+- 角度阈值：旋转超过Y度更新
+- 定时更新：每N帧更新
+- 混合策略：根据场景动态选择
+
+**粒子优化**：
+- GPU实例化批量渲染
+- 纹理图集减少drawcall
+- 距离剔除/LOD
+- 异步计算并行模拟
+
+---
+
+#### 实用建议
+
+**何时使用广告牌**：
+- 远距离物体（>50米）
+- 重复实例（树木、草）
+- 粒子效果
+- UI覆盖层
+
+**何时使用Impostor**：
+- 复杂静态物体的远景LOD
+- 需要保持轮廓的物体
+- 相机移动慢的场景
+
+**常见陷阱**：
+- ❌ Billboard立方体角落有空隙（顶点法线不统一）
+- ❌ Impostor更新频率过高（性能）
+- ❌ 粒子排序错误（透明渲染）
+- ❌ 体素分辨率过高（内存）
+
+> [!tip] 混合使用
+> 同一物体可以在不同距离使用不同技术：
+> 近景（3D模型）→ 中景（简化模型）→ 远景（Impostor）→ 超远景（Billboard）
+
+---
+
+## Chapter 14 - Volumetric and Translucency Rendering 体积与半透明渲染
+
+### 14.1 光线散射理论
+
+#### 14.1.1 参与介质材质
+
+**4种事件**
+1. 吸收（Absorption）：光被介质吸收
+2. 外散射（Out-scattering）：光散射到其他方向
+3. 发射（Emission）：介质自发光
+4. 内散射（In-scattering）：其他方向光散射到当前方向
+
+**关键参数**
+- σs：散射系数
+- σa：吸收系数
+- σt：消光系数 = σs + σa
+- ρ：反照率 = σs / σt
+
+> [!important] 波长依赖
+> 所有参数都是RGB向量
+
+#### 14.1.2 透光率（Transmittance）
+
+**Beer-Lambert定律**
+```
+Tr(x) = e^(-σt·d)
+```
+- d：光线传播距离
+- σt = 1 → 衰减60%
+
+**应用**
+- 雾效
+- 体积阴影
+- 次表面散射
+
+#### 14.1.3 散射事件
+
+**单次散射 vs 多重散射**
+- 单次：只考虑一次散射
+- 多重：光线多次反弹
+
+**辐射传输方程（RTE）**
+```
+dL/ds = -σt·L + σs·∫ p(ω,ω')·L(ω') dω' + Le
+```
+
+#### 14.1.4 相位函数（Phase Function）
+
+**瑞利散射（Rayleigh）**
+- 粒子 << 波长
+- 天空蓝色
+- 波长依赖强
+
+**米氏散射（Mie）**
+- 粒子 ≈ 波长
+- 云雾
+- 波长依赖弱
+
+**Henyey-Greenstein相位函数**
+```
+p(g, cosθ) = (1-g²) / (4π·(1+g²-2g·cosθ)^1.5)
+```
+- g = 0：各向同性
+- g > 0：前向散射（雾）
+- g < 0：后向散射
+
+**Schlick近似**（更快）
+```
+p(k, cosθ) = (1-k²) / (4π·(1-k·cosθ)²)
+```
+- k = 1.55g - 0.55g³
+
+> [!tip] 参数选择
+> - 雾：g = 0.5-0.8
+> - 云：g = 0.6-0.9
+
+---
+
+### 14.2 特殊的体渲染
+
+#### 14.2.1 大规模雾
+
+**高度雾（Height Fog）**
+- 平板近似
+- 指数衰减
+
+**Wenzel封闭形式解**
+- 快速计算slab内指数衰减
+- 边缘平滑过渡
+
+#### 14.2.2 简单体积光（God Rays）
+
+**Sun等人解**
+```cpp
+radiance = Li·exp(-σt·rayDistance)·scatter_integral
+```
+
+**实现**
+- 径向模糊
+- 从光源位置向外
+
+---
+
+### 14.3 通用体渲染
+
+#### 14.3.1 体积数据可视化
+
+- 医学成像
+- 科学数据
+
+#### 14.3.2 参与介质渲染
+
+**光线步进（Ray Marching）**
+```cpp
+for (int i = 0; i < steps; i++) {
+    vec3 pos = rayStart + rayDir * stepSize * i;
+    float density = sampleVolume(pos);
+
+    // 累积散射
+    scattering += computeScattering(pos, density);
+
+    // 累积透光率
+    transmission *= exp(-density * stepSize);
+}
+```
+
+**体素化（Voxelization）**
+- 场景体素化
+- 存储σt到3D纹理
+- 用于体积阴影
+
+> [!tip] 性能优化
+> - 自适应步进
+> - Empty Space Skipping
+> - Temporal Reprojection
+
+---
+
+### 14.4 天空渲染
+
+#### 14.4.1 天空和空气透视
+
+**大气散射模型**
+- Rayleigh + Mie组合
+- 预计算查找表
+
+**空气透视（Aerial Perspective）**
+- 远处物体颜色偏移
+- 对比度降低
+
+**实现**
+```
+skyColor = sunColor * (rayleigh + mie) * phase
+objectColor = objectColor * transmission + inscattering
+```
+
+#### 14.4.2 云渲染
+
+**方法**
+1. 粒子系统
+2. 参与介质（体积云）
+
+**程序化生成**
+- 3D Perlin/Worley噪声
+- 多层叠加
+
+**多重散射近似**
+- 粉末效应（Powder Effect）
+- Beer-Lambert修正
+
+> [!success] 案例
+> Nubis、Horizon Zero Dawn云系统
+
+---
+
+### 14.5 半透明表面
+
+#### 14.5.1 覆盖率和透光率
+
+**Alpha混合 vs 透光率**
+```
+// Alpha混合（不正确）
+co = α·cs + (1-α)·cb
+
+// 透光率（正确）
+co = cs + Tr·cb
+
+// 通用（考虑覆盖率）
+co = α·(cs + Tr·cb) + (1-α)·cb
+```
+
+**双源颜色混合**
+- 透光率和颜色独立输出
+
+**棋盘格渲染（Screen-Door）**
+- 用抖动模拟透明
+
+#### 14.5.2 折射（Refraction）
+
+**Snell定律**
+```
+n1·sinθi = n2·sinθt
+```
+
+**屏幕空间折射**
+- 扰动UV采样后台缓冲
+- 快速但不准确
+
+**立方体贴图方法**
+- 使用环境贴图近似
+- 适合小物体
+
+**粗糙表面折射模糊**
+- Mipmap选择基于粗糙度
+- 或多重采样
+
+#### 14.5.3 焦散和阴影
+
+**焦散（Caustics）**
+- 光线聚焦/散焦图案
+
+**实现方法**
+- 预计算纹理动画
+- 光子溅射（Photon Splatting）
+
+**体积阴影**
+- 透明物体的体积阴影
+
+---
+
+### 14.6 次表面散射（SSS）
+
+#### 环绕光照（Wrap Lighting）
+
+**最简单SSS近似**
+```
+NdotL_wrap = (NdotL + wrap) / (1 + wrap)
+diffuse = saturate(NdotL_wrap) * color
+```
+- wrap：0.3-0.7
+
+#### 法线模糊（Normal Blurring）
+
+- 不同RGB通道使用不同法线
+- 模拟波长依赖散射
+
+#### 预积分皮肤着色
+
+**2D LUT**
+- X轴：n·l
+- Y轴：曲率1/r
+- 预计算散射结果
+
+> [!important] 优势
+> 实时且准确
+> 考虑阴影边界散射
+
+#### 纹理空间扩散
+
+**流程**
+1. 渲染irradiance到UV空间纹理
+2. 模糊处理（多层皮肤）
+3. 采样应用
+
+**优点**
+- 质量高
+- 适合特写
+
+**缺点**
+- 需要良好UV
+- 内存占用
+
+#### 屏幕空间扩散
+
+**Jimenez技术**
+- 双边模糊滤波
+- 在切线空间应用
+- 多角色场景友好
+
+**大尺度传输**
+- 处理耳朵、鼻子透光
+
+**参数**
+- 扩散半径：1-5mm（屏幕空间）
+- 多层权重
+
+> [!success] 应用
+> 《神秘海域》系列、《最后生还者》
+
+---
+
+### 14.7 毛发和皮毛
+
+#### 14.7.1 几何和Alpha
+
+**毛发四边形（Hair Quad）**
+- 每根毛发 = 带纹理的quad
+
+**排序问题**
+- 深度排序困难
+- 解决方案：
+  - MSAA + Alpha to Coverage
+  - K-buffer
+  - OIT（Order-Independent Transparency）
+
+#### 14.7.2 毛发BSDF模型
+
+**Marschner模型**
+
+**3个散射分量**
+1. **R**：表面反射（白色高光）
+2. **TT**：透射穿过（主要颜色）
+3. **TRT**：折射-反射-折射（彩色次级高光）
+
+**d'Eon能量守恒模型**
+- 更长路径：TR^nT
+- 黑色素吸收：
+  - Eumelanin（棕色）
+  - Pheomelanin（红色）
+
+**Chiang模型**
+- 艺术家友好参数化
+- 粗糙度、颜色控制
+
+#### 14.7.3 多重散射
+
+**双重散射（Dual-Scattering）**
+```
+color = local_scattering + global_transmittance * env_lighting
+```
+
+**全局透光率ΨG**
+- 整体毛发透光
+- 类似AO
+
+#### 14.7.4 体积阴影
+
+**方法**
+- 深度阴影贴图（多层）
+- 深度不透明度映射
+- 占用率贴图
+
+#### 14.7.5 皮毛渲染
+
+**壳和鳍片（Shell & Fin）**
+- 多层壳：体积感
+- 鳍片：毛发细节
+
+**体积纹理**
+- 3D噪声
+- 程序化生成
+
+**双圆柱体BSDF**
+- 模拟髓质
+
+---
+
+### 14.8 统一方法
+
+**SGGX微片理论**
+- 统一固体和参与介质
+- 各向异性微片
+- 用于森林、毛发等
+
+---
+
+### 第十四章核心要点总结
+
+#### 参与介质核心参数
+
+**四个关键系数**：
+- σₛ：散射系数（光被散射的概率）
+- σₐ：吸收系数（光被吸收的概率）
+- σₜ：消光系数 = σₛ + σₐ
+- ρ：反照率 = σₛ / σₜ（散射占消光的比例）
+
+**Beer-Lambert定律**：
+$$T_r(x) = e^{-\sigma_t \cdot d}$$
+- σₜ = 1 → 衰减60%
+- 波长依赖 → 彩色透光率
+
+---
+
+#### 相位函数对比
+
+| 相位函数 | 参数 | 特点 | 适用 |
+|---------|------|------|------|
+| Rayleigh | 无 | 粒子<<波长，波长依赖强 | 天空蓝色 |
+| Mie | 复杂 | 粒子≈波长，波长依赖弱 | 云雾 |
+| HG | g ∈ [-1,1] | 简单可控，g>0前向散射 | 通用雾效 |
+| Schlick | k ∈ [-1,1] | HG近似，计算更快 | 实时渲染 |
+
+**参数选择**：
+- 雾：g = 0.5-0.8（前向散射）
+- 云：g = 0.6-0.9（强前向散射）
+- 各向同性：g = 0
+
+---
+
+#### 体渲染方法对比
+
+| 方法 | 成本 | 精度 | 适用场景 |
+|------|------|------|----------|
+| 高度雾（Slab） | 极低 | 低 | 大规模均匀雾 |
+| 径向模糊（God Rays） | 低 | 中 | 简单体积光 |
+| 光线步进 | 高 | 高 | 通用参与介质 |
+| 体素化 | 中 | 中高 | 实时体积光+阴影 |
+
+---
+
+#### 半透明渲染核心
+
+**正确的透光率模型**：
+```glsl
+// ❌ 错误：Alpha混合
+color_out = α·color_surface + (1-α)·color_bg;
+
+// ✅ 正确：透光率
+color_out = color_surface + Tr·color_bg;
+
+// ✅ 通用：考虑覆盖率
+color_out = α·(color_surface + Tr·color_bg) + (1-α)·color_bg;
+```
+
+**折射实现**：
+- 屏幕空间：扰动UV（快但不准确）
+- 立方体贴图：环境近似（适合小物体）
+- 光线追踪：精确（成本高）
+
+---
+
+#### 次表面散射（SSS）技术
+
+| 方法 | 成本 | 质量 | 适用 |
+|------|------|------|------|
+| Wrap Lighting | 极低 | 低 | 快速近似 |
+| 法线模糊 | 低 | 中 | 简单SSS |
+| 预积分皮肤 | 低 | 高 | 实时皮肤 |
+| 纹理空间扩散 | 中 | 极高 | 特写皮肤 |
+| 屏幕空间扩散 | 中 | 高 | 多角色场景 |
+
+**参数速查**：
+```
+扩散半径: 1-5mm（屏幕空间）
+多层权重: [0.6, 0.3, 0.1]
+Wrap参数: 0.3-0.7
+```
+
+---
+
+#### 毛发渲染
+
+**Marschner模型三分量**：
+1. **R**：表面反射（白色高光）
+2. **TT**：透射穿过（主要颜色）
+3. **TRT**：折射-反射-折射（彩色次级高光）
+
+**实现要点**：
+- 几何：Hair Quad + Alpha to Coverage
+- 排序：OIT（Order-Independent Transparency）
+- 阴影：深度不透明度映射
+- 多重散射：Dual-Scattering近似
+
+**Chiang模型**：
+- 艺术家友好参数
+- 粗糙度、颜色控制
+- 适合游戏实时渲染
+
+---
+
+#### 实用建议
+
+**体积效果选择**：
+- 简单雾 → 高度雾（Wenzel解）
+- 体积光 → Froxel + 时域重投影
+- 云渲染 → 3D噪声 + Ray Marching
+- 天空 → Rayleigh + Mie组合
+
+**SSS选择**：
+- 移动平台 → Wrap Lighting
+- 实时游戏 → 屏幕空间扩散（Jimenez）
+- 电影级 → 纹理空间扩散
+
+**优化技巧**：
+- 自适应步进（Ray Marching）
+- Empty Space Skipping
+- Temporal Reprojection（历史帧复用）
+- 降低体素分辨率
+
+**常见陷阱**：
+- ❌ 使用Alpha混合模拟透光率（物理不正确）
+- ❌ Ray Marching步进数过少（噪声）
+- ❌ SSS扩散半径过大（过度模糊）
+- ❌ 毛发排序错误（透明问题）
+
+> [!success] 现代游戏案例
+> - 《神秘海域》：屏幕空间SSS
+> - 《Horizon Zero Dawn》：体积云
+> - 《最后生还者2》：高质量毛发渲染
+
+---
+
+## Chapter 15 - Non-Photorealistic Rendering 非真实感渲染
+
+### 核心目标
+- 非照片级真实感
+- 艺术化、风格化
+- 技术插图
+
+---
+
+### 15.1 卡通着色（Toon Shading）
+
+#### 双色着色（Two-Tone）
+
+**实现**
+```
+float NdotL = dot(normal, lightDir);
+color = NdotL > threshold ? brightColor : darkColor;
+```
+
+#### 色调分离（Posterization）
+
+**量化颜色**
+```
+color = floor(color * levels) / levels;
+```
+
+**色调保持**
+- HSV/HSL空间量化
+- 避免色调偏移
+
+#### Ramp纹理
+
+**1D LUT**
+```
+float intensity = dot(normal, lightDir);
+color = tex1D(rampTexture, intensity * 0.5 + 0.5);
+```
+
+#### 视角相关效果（Barla）
+
+**2D贴图**
+- X轴：光照强度
+- Y轴：深度/方向
+- 距离软化
+
+> [!success] 案例
+> 《军团要塞2》：卡通+现实混合风格
+
+---
+
+### 15.2 轮廓渲染
+
+#### 边缘类型
+
+1. **边界边缘（Boundary Edge）**：不被两个三角形共享（如纸边缘）
+2. **折痕边缘（Crease Edge）**：二面角>阈值（默认60°）
+3. **材质边缘（Material Edge）**：材质变化
+4. **Contour边缘**：一个面向观察者，另一个背离
+5. **Silhouette边缘**：将物体从背景分离（Contour子集）
+
+#### 15.2.1 基于法线的Contour着色
+
+**原理**
+```
+float edge = abs(dot(normal, viewDir));
+color = edge < threshold ? edgeColor : surfaceColor;
+```
+
+**优点**
+- 实现简单
+
+**缺点**
+- 宽度不均（取决于曲率）
+- 无法处理尖锐折痕（如立方体）
+- 距离远时失效
+
+#### 15.2.2 程序化几何Silhouette
+
+**壳方法（Shell/Halo）**
+
+**实现**
+```glsl
+// 顶点着色器
+vec4 pos = gl_Position;
+vec3 offset = normal * thickness * (pos.w / screenHeight);
+gl_Position = pos + vec4(offset, 0);
+```
+
+**流程**
+1. 正常渲染正面
+2. 打开正面剔除
+3. 沿法线外扩背面顶点
+4. 渲染黑色背面
+
+**优点**
+- 简单、高效、稳定
+- GPU友好
+
+**缺点**
+- 立方体角落有空隙（顶点法线不统一）
+
+**解决方案**
+- 共享平均顶点法线
+- 折痕处创建退化几何
+
+**三角形扩展（Triangle Fattening）**
+- 沿边缘外扩
+- 考虑斜率和距离
+- 均匀宽度
+
+**鳍片技术（Fin）**
+- 折痕边缘生成额外多边形
+- 根据二面角控制可见性
+
+> [!success] 应用
+> 《波斯王子》、《爆炸头武士》、《Cel Damage》
+
+#### 15.2.3 基于图像处理的边缘检测
+
+**G-Buffer方法（Saito-Takahashi）**
+
+**流程**
+1. 渲染深度、法线、对象ID到多个RT
+2. 后处理检测不连续
+
+**边缘检测算子**
+- Roberts Cross
+- Sobel
+- Scharr
+
+**深度边缘检测**
+```
+depthGradient = depth[x+1,y] - depth[x-1,y]
+if (abs(depthGradient) > threshold) edge = 1;
+```
+
+**法线边缘检测**
+```
+normalDiff = length(normal[x,y] - normal[x+1,y])
+if (normalDiff > threshold) edge = 1;
+```
+
+**对象ID边缘检测**
+- 检测物体边界
+- 材质边缘
+
+**膨胀算子（Dilation）**
+- 加粗边缘
+- 多pass处理
+
+**优点**
+- 处理所有表面类型
+- 不要求连通性
+
+**缺点**
+- 深度差异小时遗漏（如纸在桌上）
+- 距离变化时误检测
+- 产生锯齿（可用MLAA改善）
+
+> [!success] 案例
+> 《无主之地》：修改Sobel滤波器
+
+#### 15.2.4 几何Contour边缘检测
+
+**判定公式**
+```
+(n0·v) * (n1·v) < 0
+```
+- n0, n1：两个三角形法线
+- v：观察向量
+
+**优化**
+- 忽略共面三角形内部边
+- 凹边永远不是Contour边
+- 有效距离缓存（Aila-Miettinen）
+
+**Contour环（Loop）追踪**
+- 封闭曲线
+- 每顶点偶数条边
+- 帧间追踪比重建快
+
+**GPU加速**
+- 顶点着色器检测
+- 几何着色器生成鳍片四边形
+
+#### 15.2.5 隐藏线渲染
+
+**目的**
+- 确定线段可见性区间
+
+**Northrup-Markosian方法**
+- 渲染ID缓冲
+- 重建可见笔触路径
+
+**Cole-Finkelstein方法**
+- GPU计算线段裁剪
+- 确定可见性
+
+**笔触风格化**
+- Taper（渐窄）
+- Flare（光晕）
+- Wiggle（波浪）
+- Overshoot（过冲）
+- Fading（淡出）
+
+---
+
+### 15.3 笔触表面风格化
+
+#### 色调艺术贴图（TAM）
+
+**原理**
+- Mipmap层级绘制笔触
+- 保持屏幕空间笔触密度
+
+**构建**
+- 每层包含上层所有笔触
+- 层级间平滑插值
+
+**使用**
+```
+vec2 uv = texCoord;
+float lod = computeLOD(distance);
+color = texture(TAM, uv, lod);
+```
+
+**优点**
+- 笔触密度恒定
+- 手绘感觉
+
+#### 主曲线方向线
+
+**概念**
+- 最大/最小曲率方向
+- 与光照无关
+
+**应用**
+- 沿主方向绘制笔触
+- 静态模型只计算一次
+
+#### 嫁接（Graftal）
+
+**定义**
+- 根据LOD、视角添加几何装饰
+
+**应用**
+- 钢笔/画笔笔触
+- 程序化建模
+
+---
+
+### 15.4 线条渲染
+
+#### 15.4.1 渲染三角形边缘
+
+**问题**
+- 线条与三角形z-fighting
+
+**解决方案**
+
+**1. 固定偏移**
+- 简单但不精确
+
+**2. glPolygonOffset**
+- 根据斜率偏移
+- 较好但不完美
+
+**3. 像素着色器方法（Bærentzen）**
+
+**重心坐标**
+```glsl
+float distToEdge = min(min(bary.x, bary.y), bary.z);
+if (distToEdge < lineWidth) {
+    color = edgeColor;
+}
+```
+
+**优点**
+- 任意宽度
+- 距离影响
+- 抗锯齿
+
+**缺点**
+- Contour边缘宽度减半
+
+#### 15.4.2 渲染遮挡线条
+
+**流程**
+1. 渲染实心三角形到z-buffer
+2. 正常渲染线条
+3. 反转z-test渲染被遮挡线条（浅灰色）
+
+#### 15.4.3 光晕（Halo）
+
+**目的**
+- 线条交叉时擦除远处线条部分
+
+**实现**
+1. 渲染粗光晕四边形到z-buffer（背景色）
+2. 渲染细线条（正常色）
+
+**优化**
+- 几何着色器创建四边形
+- 缩小光晕避免顶点干扰
+
+---
+
+### 15.5 文本渲染
+
+#### 亚像素渲染（Subpixel Rendering）
+
+**原理**
+- LCD每像素 = R+G+B三个垂直矩形
+- 水平分辨率×3
+
+**ClearType技术**
+- 不同亚像素着色
+- 人眼混合颜色
+
+**局限**
+- 混合背景色有问题
+- Word 2013停用
+
+#### 字形微调（Font Hinting）
+
+**目的**
+- 调整字形轮廓匹配像素网格
+- "I"占1列而非跨2列
+
+#### 符号距离场（SDF）
+
+**Valve/Green方法**
+
+**原理**
+- 纹理存储到边缘的带符号距离
+- 双线性插值提供alpha覆盖率
+
+**优点**
+- 任意缩放旋转
+- 抗锯齿良好
+
+**缺点**
+- 预计算耗时
+- 尖角平滑
+
+**轮廓效果**
+```
+float dist = texture(sdf, uv).r;
+float alpha = smoothstep(0.5 - edgeWidth, 0.5 + edgeWidth, dist);
+```
+
+#### 直接曲线计算
+
+**Loop-Blinn方法**
+- 像素着色器直接计算Bézier曲线
+
+**Dobbie优化**
+- 包围盒矩形一次计算所有字形
+
+**Lengyel评估器**
+- 健壮判断点是否在字形内
+
+#### GPU加速
+
+**Pathfinder库**
+- 曲面细分 + 计算着色器
+- 性能优于CPU引擎
+- 高质量抗锯齿
+
+---
+
+### 第十五章核心要点总结
+
+#### NPR核心目标
+
+**三大方向**：
+1. **艺术化**：卡通、手绘、水彩
+2. **技术插图**：工程图、解剖图、爆炸图
+3. **风格化**：独特视觉风格、游戏美术
+
+---
+
+#### 卡通着色技术对比
+
+| 技术 | 实现 | 成本 | 效果 | 灵活性 |
+|------|------|------|------|--------|
+| 双色着色 | 阈值判断 | 极低 | 硬边界 | 低 |
+| 色调分离 | 量化颜色 | 低 | 色带 | 中 |
+| Ramp纹理 | 1D LUT | 低 | 可控色调 | 高 |
+| 视角相关 | 2D LUT | 中 | 深度软化 | 极高 |
+
+**实现示例**：
+```glsl
+// Ramp纹理
+float intensity = dot(normal, lightDir) * 0.5 + 0.5;
+vec3 color = texture(rampTexture, vec2(intensity, 0.5)).rgb;
+```
+
+---
+
+#### 轮廓渲染方法对比
+
+| 方法 | 边缘类型 | 精度 | 成本 | GPU友好 |
+|------|---------|------|------|---------|
+| 基于法线 | Contour | 低 | 极低 | 是 |
+| Shell/Halo | Silhouette | 中 | 低 | 是 |
+| G-Buffer | 所有类型 | 高 | 中 | 是 |
+| 几何检测 | Contour | 极高 | 高 | 中 |
+
+**边缘类型**：
+1. **Boundary**：边界边缘（不共享）
+2. **Crease**：折痕边缘（二面角>60°）
+3. **Material**：材质边缘
+4. **Contour**：一面向前一面向后
+5. **Silhouette**：Contour的可见子集
+
+---
+
+#### Shell/Halo方法（最实用）
+
+**实现流程**：
+```glsl
+// Pass 1: 正常渲染
+渲染正面 → colorBuffer + depthBuffer
+
+// Pass 2: 渲染轮廓
+启用正面剔除;
+沿法线外扩背面顶点;
+vec3 offset = normal * thickness * (pos.w / screenHeight);
+gl_Position = pos + vec4(offset, 0);
+渲染黑色背面;
+```
+
+**优点**：
+- 简单、高效、稳定
+- GPU友好（一次几何pass）
+- 适合实时游戏
+
+**解决空隙**：
+- 共享平均顶点法线
+- 折痕处创建退化几何
+
+> [!success] 商业应用
+> 《波斯王子》、《爆炸头武士》、《Cel Damage》
+
+---
+
+#### G-Buffer边缘检测
+
+**Saito-Takahashi方法**：
+1. 渲染深度、法线、对象ID到多个RT
+2. 后处理检测不连续性
+
+**边缘检测算子**：
+- Roberts Cross（2×2）
+- Sobel（3×3，更平滑）
+- Scharr（3×3，精度更高）
+
+**优点**：
+- 处理所有表面类型
+- 不要求几何连通性
+
+**缺点**：
+- 深度差异小时遗漏
+- 产生锯齿（可用MLAA改善）
+
+---
+
+#### 文本渲染技术
+
+| 方法 | 质量 | 缩放 | 成本 | 适用 |
+|------|------|------|------|------|
+| 位图 | 低 | 差 | 极低 | 固定尺寸 |
+| SDF | 高 | 好 | 中 | 游戏UI |
+| Loop-Blinn | 极高 | 完美 | 高 | 矢量图形 |
+| Pathfinder | 极高 | 完美 | 中高 | GPU加速 |
+
+**SDF优势**：
+```glsl
+float dist = texture(sdfTexture, uv).r;
+float alpha = smoothstep(0.5 - edge, 0.5 + edge, dist);
+
+// 轮廓效果
+float outline = smoothstep(outlineStart, outlineEnd, dist);
+```
+
+- 任意缩放旋转
+- 抗锯齿良好
+- 支持轮廓/发光效果
+
+---
+
+#### 实用建议
+
+**卡通着色选择**：
+- 简单风格 → 双色着色 + Ramp纹理
+- 复杂风格 → 视角相关2D LUT
+- 混合风格 → 《军团要塞2》方法
+
+**轮廓选择**：
+- 实时游戏 → Shell/Halo方法
+- 高质量 → G-Buffer边缘检测
+- 技术插图 → 几何Contour检测
+
+**文本选择**：
+- 游戏UI → SDF（Valve方法）
+- 精确文字 → Loop-Blinn曲线
+- 高性能 → GPU加速（Pathfinder）
+
+**优化技巧**：
+- 轮廓用屏幕空间宽度（透视正确）
+- G-Buffer检测结合MLAA抗锯齿
+- SDF预计算可离线处理
+- 卡通着色用顶点光照降低成本
+
+**常见陷阱**：
+- ❌ Shell方法立方体角落有空隙
+- ❌ 基于法线的轮廓在掠射角失效
+- ❌ G-Buffer深度阈值设置不当
+- ❌ SDF分辨率过低（尖角平滑）
+
+> [!tip] 风格混合
+> 现代游戏常混合真实感和NPR：
+> - 《塞尔达：旷野之息》：物理光照 + 卡通着色
+> - 《往日不再》：写实渲染 + 漫画轮廓
+> - 《无主之地》：PBR材质 + Cel Shading
+
+---
+
+## 技术对比总览
+
+| 技术类别 | 主要方法 | 性能 | 质量 | 适用场景 |
+|---------|---------|------|------|---------|
+| **全局光照** | AO/SSAO | 中 | 好 | 实时间接光照 |
+| | 路径追踪 | 低 | 优秀 | 离线烘焙 |
+| **图像空间** | TAA | 低 | 优秀 | 抗锯齿 |
+| | Bloom | 低 | 好 | 辉光效果 |
+| | DoF | 中 | 好 | 景深 |
+| **体积渲染** | 光线步进 | 高 | 优秀 | 雾、云 |
+| | Froxel | 中 | 好 | 实时体积光 |
+| **半透明** | SSS | 中 | 优秀 | 皮肤 |
+| | 毛发BSDF | 高 | 优秀 | 毛发/皮毛 |
+| **NPR** | 卡通着色 | 低 | - | 风格化 |
+| | 轮廓渲染 | 中 | - | 技术插图 |
+
+---
+
+## 实现优先级建议
+
+### 必备基础（优先级1）
+- [ ] SSAO/GTAO
+- [ ] TAA
+- [ ] Bloom
+- [ ] 简单雾效
+
+### 进阶效果（优先级2）
+- [ ] 屏幕空间反射
+- [ ] 景深
+- [ ] 运动模糊
+- [ ] 粒子系统
+
+### 高级技术（优先级3）
+- [ ] 体积雾（Froxel）
+- [ ] 次表面散射
+- [ ] 定向遮蔽
+- [ ] 体积阴影
+
+### 特殊需求
+- [ ] NPR（按项目需求）
+- [ ] 毛发渲染（如需要）
+- [ ] 布料模拟
+
+---
+
+## 参数速查表
+
+### SSAO
+```
+采样半径: 0.5-2.0m
+采样数: 8-32
+深度阈值: 0.01-0.1
+```
+
+### Bloom
+```
+阈值: 0.8-1.2
+强度: 0.1-0.5
+迭代: 4-6次
+```
+
+### 景深
+```
+焦距: 场景相关
+光圈: f/2.8 - f/16
+CoC max: 10-30px
+```
+
+### 体积雾
+```
+散射系数: 0.01-0.1
+吸收系数: 0.005-0.05
+相位参数g: 0.5-0.8
+```
+
+### SSS
+```
+扩散半径: 1-5mm
+多层权重: [0.6, 0.3, 0.1]
+```
+
+---
+
+> [!important] 后续学习建议
+> 1. 选择1-2个核心技术深入实现
+> 2. 阅读原始论文（RTR4提供的引用）
+> 3. 参考开源实现（Filament、UE、Unity）
+> 4. 结合实际项目需求调整参数
+
+---
