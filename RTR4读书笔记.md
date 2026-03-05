@@ -16,7 +16,6 @@
 - **持续更新**：逐章添加，保持更新
 
 ### 📚 当前进度
-### 📚 当前进度
 
 - ✅ Chapter 1 - Introduction（简介）
 - ✅ Chapter 2 - The Graphics Rendering Pipeline（图形渲染管线）
